@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\Auditor\Models;
+namespace Modules\Auditor\tests\Models;
 
 use Modules\Auditor\Models\Audit;
 use phpOMS\Account\Account;

@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\Audit\Controller;
+namespace Modules\Audit\tests\Controller;
 
 require_once __DIR__ . '/../../Autoloader.php';
 
