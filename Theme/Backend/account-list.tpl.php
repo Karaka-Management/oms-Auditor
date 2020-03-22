@@ -29,9 +29,6 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
                     <td class="wf-100"><?= $this->getHtml('Name') ?>
                     <td class="wf-100"><?= $this->getHtml('Email') ?>
-                <tfoot>
-                <tr>
-                    <td colspan="2">
                 <tbody>
                 <?php $count = 0; foreach ($accounts as $key => $account) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $account->getId()); ?>

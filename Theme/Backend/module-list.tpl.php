@@ -29,9 +29,6 @@ echo $this->getData('nav')->render(); ?>
                 <tr>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
                     <td class="wf-100"><?= $this->getHtml('Name') ?>
-                <tfoot>
-                <tr>
-                    <td colspan="2">
                 <tbody>
                 <?php $count = 0; foreach ($modules as $key => $module) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $module['name']['id']); ?>
