@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Audit\tests\Controller;
 
-require_once __DIR__ . '/../../tests/../Autoloader.php';
-
 use Model\CoreSettings;
 
 use Modules\Admin\Models\AccountPermission;
