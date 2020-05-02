@@ -53,8 +53,10 @@ final class BackendController extends Controller
 
         if ($request->getData('ptype') === '-') {
             $view->setData('audits', AuditMapper::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25));
-        } else {
+        } elseif ($request->getData('ptype') === '+') {
             $view->setData('audits', AuditMapper::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
+        } else {
+            $view->setData('audits', AuditMapper::getAfterPivot(0, null, 25));
         }
 
         return $view;
@@ -78,6 +80,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
+        /** @var \Modules\Auditor\Models\Audit $audit */
         $audit = AuditMapper::get((int) $request->getData('id'));
         $view->setData('audit', $audit);
 
@@ -126,6 +129,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/module-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
+        /** @var \Modules\Auditor\Models\Audit[] $list */
         $list = AuditMapper::get(50);
         $view->setData('audits', $list);
 
@@ -173,6 +177,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/account-single');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
+        /** @var \Modules\Auditor\Models\Audit[] $list */
         $list = AuditMapper::get(50);
         $view->setData('audits', $list);
 
