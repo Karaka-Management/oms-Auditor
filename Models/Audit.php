@@ -130,6 +130,7 @@ class Audit
      * @param null|string $module  Module id
      * @param null|string $ref     Dynamic reference to model
      * @param null|string $content Additional audit information
+     * @param int         $ip      Ip
      *
      * @since 1.0.0
      */
@@ -141,7 +142,8 @@ class Audit
         int $subtype = 0,
         string $module = null,
         string $ref = null,
-        string $content = null
+        string $content = null,
+        int $ip = 0
     ) {
         $this->createdAt = new \DateTime('now');
         $this->createdBy = $account ?? new NullAccount();
@@ -152,6 +154,7 @@ class Audit
         $this->module    = $module;
         $this->ref       = $ref;
         $this->content   = $content;
+        $this->ip        = $ip;
     }
 
     /**
@@ -274,5 +277,17 @@ class Audit
     public function getCreatedAt() : \DateTime
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Get ip.
+     *
+     * @return int
+     *
+     * @since 1.0.0
+     */
+    public function getIp() : int
+    {
+        return $this->ip;
     }
 }

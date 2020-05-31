@@ -12,24 +12,44 @@
  */
 declare(strict_types=1);
 
+use phpOMS\Views\ViewAbstract;
+
+/** @var \Modules\Auditor\Models\Audit $audit */
+$audit = $this->getData('audit');
+
 /**
  * @var \phpOMS\Views\View $this
  */
-
 echo $this->getData('nav')->render();
 ?>
 
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <article>
-                <pre><?= \phpOMS\Utils\StringUtils::createDiffMarkup(
-                        \phpOMS\Views\ViewAbstract::html($this->getData('audit')->getOld() ?? ''),
-                        \phpOMS\Views\ViewAbstract::html($this->getData('audit')->getNew() ?? ''),
-                        "\n"
-                    ); ?>
-                </pre>
-            </article>
+            <div class="portlet-body">
+                <table class="list">
+                    <tr>
+                        <th>Created By
+                        <td><?= $audit->getCreatedBy()->getName1(); ?>
+                    <tr>
+                        <th>Created At
+                        <td><?= $this->getDateTime($audit->getCreatedAt(), 'long'); ?>
+                    <tr>
+                        <th>Module
+                        <td><?= $audit->getModule(); ?>
+                    <tr>
+                        <th>IP
+                        <td><?= \long2ip($audit->getIp()); ?>
+                </table>
+                <article>
+                    <pre><?= \phpOMS\Utils\StringUtils::createDiffMarkup(
+                            ViewAbstract::html($audit->getOld() ?? ''),
+                            ViewAbstract::html($audit->getNew() ?? ''),
+                            "\n"
+                        ); ?>
+                    </pre>
+                </article>
+            </div>
         </div>
     </div>
 </div>

@@ -47,6 +47,7 @@ final class ApiController extends Controller
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
+     * @param string $ip      Ip
      *
      * @return void
      *
@@ -62,11 +63,12 @@ final class ApiController extends Controller
         int $subtype = 0,
         string $module = null,
         string $ref = null,
-        string $content = null
+        string $content = null,
+        string $ip = null
     ) : void
     {
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $subtype, $module, $ref, $content);
+        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -82,6 +84,7 @@ final class ApiController extends Controller
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
+     * @param string $ip      Ip
      *
      * @return void
      *
@@ -97,12 +100,13 @@ final class ApiController extends Controller
         int $subtype = 0,
         string $module = null,
         string $ref = null,
-        string $content = null
+        string $content = null,
+        string $ip = null
     ) : void
     {
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content);
+        $audit     = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -118,6 +122,7 @@ final class ApiController extends Controller
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
+     * @param string $ip      Ip
      *
      * @return void
      *
@@ -133,11 +138,12 @@ final class ApiController extends Controller
         int $subtype = 0,
         string $module = null,
         string $ref = null,
-        string $content = null
+        string $content = null,
+        string $ip = null
     ) : void
     {
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $subtype, $module, $ref, $content);
+        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
