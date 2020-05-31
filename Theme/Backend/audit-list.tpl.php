@@ -55,7 +55,7 @@ echo $this->getData('nav')->render(); ?>
                 <tbody>
                 <?php $count = 0; foreach ($audits as $key => $audit) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
-                    <tr data-href="<?= $url; ?>">
+                    <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
                         <td><?= $audit->getType(); ?>

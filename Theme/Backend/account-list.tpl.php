@@ -32,7 +32,7 @@ echo $this->getData('nav')->render(); ?>
                 <tbody>
                 <?php $count = 0; foreach ($accounts as $key => $account) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $account->getId()); ?>
-                    <tr data-href="<?= $url; ?>">
+                    <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $this->printHtml($account->getId()); ?>
                         <td><?= $this->printHtml(
                             \sprintf('%3$s %2$s %1$s', $account->getName1(), $account->getName2(), $account->getName3())

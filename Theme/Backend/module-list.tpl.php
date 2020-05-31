@@ -32,7 +32,7 @@ echo $this->getData('nav')->render(); ?>
                 <tbody>
                 <?php $count = 0; foreach ($modules as $key => $module) : ++$count;
                 $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $module['name']['id']); ?>
-                    <tr data-href="<?= $url; ?>">
+                    <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $this->printHtml($module['name']['id']); ?>
                         <td><?= $this->printHtml($module['name']['external']); ?>
                 <?php endforeach; ?>
