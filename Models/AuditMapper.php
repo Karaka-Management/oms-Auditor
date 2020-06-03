@@ -37,7 +37,7 @@ final class AuditMapper extends DataMapperAbstract
         'auditor_audit_id'         => ['name' => 'auditor_audit_id',         'type' => 'int',      'internal' => 'id'],
         'auditor_audit_created_by' => ['name' => 'auditor_audit_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
         'auditor_audit_created_at' => ['name' => 'auditor_audit_created_at', 'type' => 'DateTime', 'internal' => 'createdAt', 'readonly' => true],
-        'auditor_audit_ip'         => ['name' => 'auditor_audit_ip',         'type' => 'int',      'internal' => 'ip'],
+        'auditor_audit_ip'         => ['name' => 'auditor_audit_ip',         'type' => 'int',      'internal' => 'ip', 'annotations' => ['gdpr' => true]],
         'auditor_audit_module'     => ['name' => 'auditor_audit_module',     'type' => 'string',   'internal' => 'module'],
         'auditor_audit_ref'        => ['name' => 'auditor_audit_ref',        'type' => 'string',   'internal' => 'ref'],
         'auditor_audit_type'       => ['name' => 'auditor_audit_type',       'type' => 'int',      'internal' => 'type'],
