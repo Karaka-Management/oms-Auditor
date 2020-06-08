@@ -17,9 +17,7 @@ use phpOMS\Views\ViewAbstract;
 /** @var \Modules\Auditor\Models\Audit $audit */
 $audit = $this->getData('audit');
 
-/**
- * @var \phpOMS\Views\View $this
- */
+/** @var \phpOMS\Views\View $this */
 echo $this->getData('nav')->render();
 ?>
 
