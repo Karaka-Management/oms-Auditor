@@ -12,14 +12,28 @@
  */
 declare(strict_types=1);
 
+use phpOMS\Message\Http\HttpHeader;
 use phpOMS\Views\ViewAbstract;
 
+/** @var \phpOMS\Views\View $this */
+
 /** @var \Modules\Auditor\Models\Audit $audit */
-$audit = $this->getData('audit');
+$audit   = $this->getData('audit');
+$headers = HttpHeader::getAllHeaders();
 
 /** @var \phpOMS\Views\View $this */
 echo $this->getData('nav')->render();
 ?>
+
+<?php if (isset($headers['Referer'])) : ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <a tabindex="0" class="button" href="<?= $headers['Referer']; ?>"><?= $this->getHtml('Back', '0', '0'); ?></a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <div class="row">
     <div class="col-xs-12">

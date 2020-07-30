@@ -51,9 +51,9 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
-        if ($request->getData('ptype') === '-') {
+        if ($request->getData('ptype') === 'p') {
             $view->setData('audits', AuditMapper::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25));
-        } elseif ($request->getData('ptype') === '+') {
+        } elseif ($request->getData('ptype') === 'n') {
             $view->setData('audits', AuditMapper::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
         } else {
             $view->setData('audits', AuditMapper::getAfterPivot(0, null, 25));
