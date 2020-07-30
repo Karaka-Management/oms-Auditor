@@ -24,6 +24,7 @@ return ['Auditor' => [
     'Name'    => 'Name',
     'New'     => 'New',
     'Old'     => 'Old',
+    'Ref'     => 'Ref',
     'Subtype' => 'Subtype',
     'Type'    => 'Type',
 ]];

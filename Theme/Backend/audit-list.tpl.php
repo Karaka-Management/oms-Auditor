@@ -31,7 +31,7 @@ echo $this->getData('nav')->render(); ?>
             <div class="portlet-head"><?= $this->getHtml('Audits') ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default fixed">
                 <colgroup>
-                    <col style="width: 100px">
+                    <col style="width: 75px">
                     <col style="width: 150px">
                     <col style="width: 100px">
                     <col style="width: 75px">
@@ -39,6 +39,7 @@ echo $this->getData('nav')->render(); ?>
                     <col>
                     <col>
                     <col style="width: 125px">
+                    <col style="width: 75px">
                     <col style="width: 150px">
                 </colgroup>
                 <thead>
@@ -51,10 +52,11 @@ echo $this->getData('nav')->render(); ?>
                     <td ><?= $this->getHtml('New') ?>
                     <td ><?= $this->getHtml('Content') ?>
                     <td ><?= $this->getHtml('By') ?>
+                    <td ><?= $this->getHtml('Ref') ?>
                     <td ><?= $this->getHtml('Date') ?>
                 <tbody>
                 <?php $count = 0; foreach ($audits as $key => $audit) : ++$count;
-                $url = \phpOMS\Uri\UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
+                $url = UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
@@ -64,6 +66,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($audit->getNew()); ?>
                         <td><?= $this->printHtml($audit->getContent()); ?>
                         <td><?= $this->printHtml($audit->getCreatedBy()->getName()); ?>
+                        <td><?= $this->printHtml($audit->getRef()); ?>
                         <td><?= $audit->getCreatedAt()->format('Y-m-d H:i'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
