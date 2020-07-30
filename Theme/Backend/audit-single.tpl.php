@@ -41,6 +41,15 @@ echo $this->getData('nav')->render();
             <div class="portlet-body">
                 <table class="list">
                     <tr>
+                        <th>Type
+                        <td>
+                            <?php if ($audit->getOld() === null) : echo 'CREATE'; ?>
+                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo 'UPDATE'; ?>
+                            <?php elseif ($audit->getNew() === null) : echo 'DELETE'; ?>
+                            <?php else : echo 'UNKNOWN'; ?>
+                            <?php endif; ?>
+
+                    <tr>
                         <th>Created By
                         <td><?= $audit->getCreatedBy()->getName1(); ?>
                     <tr>

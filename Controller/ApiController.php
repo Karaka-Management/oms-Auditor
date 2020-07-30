@@ -111,7 +111,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $audit     = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
+        $audit = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }

@@ -23,12 +23,12 @@
             },
             "auditor_audit_type": {
                 "name": "auditor_audit_type",
-                "type": "TINYINT",
+                "type": "INT",
                 "null": false
             },
             "auditor_audit_subtype": {
                 "name": "auditor_audit_subtype",
-                "type": "TINYINT",
+                "type": "INT",
                 "null": false
             },
             "auditor_audit_content": {

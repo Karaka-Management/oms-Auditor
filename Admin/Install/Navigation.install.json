@@ -27,36 +27,6 @@
                 "permission": { "permission": 2, "type": null, "element": null },
                 "parent": 1006201001,
                 "children": []
-            },
-            {
-                "id": 1006203001,
-                "pid": "/admin/audit",
-                "type": 3,
-                "subtype": 1,
-                "name": "Modules",
-                "uri": "{/prefix}admin/audit/module/list",
-                "target": "self",
-                "icon": null,
-                "order": 5,
-                "from": "Auditor",
-                "permission": { "permission": 2, "type": null, "element": null },
-                "parent": 1006201001,
-                "children": []
-            },
-            {
-                "id": 1006204001,
-                "pid": "/admin/audit",
-                "type": 3,
-                "subtype": 1,
-                "name": "Accounts",
-                "uri": "{/prefix}admin/audit/account/list",
-                "target": "self",
-                "icon": null,
-                "order": 10,
-                "from": "Auditor",
-                "permission": { "permission": 2, "type": null, "element": null },
-                "parent": 1006201001,
-                "children": []
             }
         ]
     }
