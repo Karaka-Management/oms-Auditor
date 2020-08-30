@@ -28,7 +28,7 @@ echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Audits') ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="portlet-head"><?= $this->getHtml('Audits'); ?><i class="fa fa-download floatRight download btn"></i></div>
             <table class="default fixed">
                 <colgroup>
                     <col style="width: 75px">
@@ -45,15 +45,15 @@ echo $this->getData('nav')->render(); ?>
                 <thead>
                 <tr>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
-                    <td ><?= $this->getHtml('Module') ?>
-                    <td ><?= $this->getHtml('Type') ?>
-                    <td ><?= $this->getHtml('Subtype') ?>
-                    <td ><?= $this->getHtml('Old') ?>
-                    <td ><?= $this->getHtml('New') ?>
-                    <td ><?= $this->getHtml('Content') ?>
-                    <td ><?= $this->getHtml('By') ?>
-                    <td ><?= $this->getHtml('Ref') ?>
-                    <td ><?= $this->getHtml('Date') ?>
+                    <td ><?= $this->getHtml('Module'); ?>
+                    <td ><?= $this->getHtml('Type'); ?>
+                    <td ><?= $this->getHtml('Subtype'); ?>
+                    <td ><?= $this->getHtml('Old'); ?>
+                    <td ><?= $this->getHtml('New'); ?>
+                    <td ><?= $this->getHtml('Content'); ?>
+                    <td ><?= $this->getHtml('By'); ?>
+                    <td ><?= $this->getHtml('Ref'); ?>
+                    <td ><?= $this->getHtml('Date'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($audits as $key => $audit) : ++$count;
                 $url = UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
