@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Auditor\Controller;
 
 use Modules\Auditor\Models\AuditMapper;
-
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;

@@ -15,10 +15,8 @@ declare(strict_types=1);
 namespace Modules\Audit\tests\Controller;
 
 use Model\CoreSettings;
-
 use Modules\Admin\Models\AccountPermission;
 use Modules\Auditor\Models\AuditMapper;
-
 use phpOMS\Account\Account;
 use phpOMS\Account\AccountManager;
 use phpOMS\Account\PermissionType;
