@@ -8,23 +8,23 @@ use phpOMS\Router\RouteVerb;
 return [
     '^.*/admin/audit/list.*$' => [
         [
-            'dest' => '\Modules\Auditor\Controller\BackendController:viewAuditorList',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Auditor\Controller\BackendController:viewAuditorList',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'  => PermissionType::READ,
-                'state' => PermissionState::AUDIT,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionState::AUDIT,
             ],
         ],
     ],
     '^.*/admin/audit/single.*$' => [
         [
-            'dest' => '\Modules\Auditor\Controller\BackendController:viewAuditorSingle',
-            'verb' => RouteVerb::GET,
+            'dest'       => '\Modules\Auditor\Controller\BackendController:viewAuditorSingle',
+            'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'  => PermissionType::READ,
-                'state' => PermissionState::AUDIT,
+                'type'   => PermissionType::READ,
+                'state'  => PermissionState::AUDIT,
             ],
         ],
     ],
