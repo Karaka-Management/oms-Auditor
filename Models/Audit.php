@@ -270,11 +270,11 @@ class Audit
     /**
      * Get created at.
      *
-     * @return \DateTime
+     * @return \DateTimeImmutable
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTimeInterface
+    public function getCreatedAt() : \DateTimeImmutable
     {
         return $this->createdAt;
     }
