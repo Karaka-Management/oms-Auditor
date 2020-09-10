@@ -109,7 +109,7 @@ class Audit
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * Ip of creator.
@@ -145,7 +145,7 @@ class Audit
         string $content = null,
         int $ip = 0
     ) {
-        $this->createdAt = new \DateTime('now');
+        $this->createdAt = new \DateTimeImmutable('now');
         $this->createdBy = $account ?? new NullAccount();
         $this->old       = $old;
         $this->new       = $new;
@@ -274,7 +274,7 @@ class Audit
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }

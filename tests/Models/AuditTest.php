@@ -41,7 +41,7 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertNull($audit->getOld());
         self::assertNull($audit->getNew());
         self::assertEquals(0, $audit->getCreatedBy()->getId());
-        self::assertInstanceOf('\DateTime', $audit->getCreatedAt());
+        self::assertInstanceOf('\DateTimeImmutable', $audit->getCreatedAt());
     }
 
     /**
