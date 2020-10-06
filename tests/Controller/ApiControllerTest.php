@@ -118,6 +118,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $this->module->apiLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 1, 'test' => true], 1, 2, 'Auditor', 'abc', 'def');
         $logs = AuditMapper::getAll();
 
+        $found = false;
         foreach($logs as $log) {
             if ($log->getId() > 0
                 && $log->getType() === 1
@@ -128,12 +129,22 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
                 && $log->getOld() === \json_encode(['id' => 2, 'test' => true], \JSON_PRETTY_PRINT)
                 && $log->getNew() === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
             ) {
-                self::assertTrue(true);
-                return;
+                $found = true;
+                break;
             }
         }
 
-        self::assertTrue(false);
+        self::assertTrue($found);
+    }
+
+    public function testLogUpdateWithoutChange() : void
+    {
+        $logs = AuditMapper::getAll();
+        $this->module->apiLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 2, 'test' => true], 1, 2, 'Auditor', 'abc', 'def');
+        $logs2 = AuditMapper::getAll();
+
+        self::assertGreaterThan(0, \count($logs));
+        self::assertEquals(\count($logs), \count($logs2));
     }
 
     /**
