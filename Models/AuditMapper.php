@@ -16,6 +16,7 @@ namespace Modules\Auditor\Models;
 
 use Modules\Admin\Models\AccountMapper;
 use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\RelationType;
 
 /**
  * Mapper class.
@@ -91,4 +92,28 @@ final class AuditMapper extends DataMapperAbstract
      * @since 1.0.0
      */
     protected static string $createdAt = 'auditor_audit_created_at';
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function delete($obj, int $relations = RelationType::REFERENCE)
+    {
+        return -1;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function update($obj, int $relations = RelationType::ALL, int $depth = 3)
+    {
+        return -1;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function updateArray(array &$obj, int $relations = RelationType::ALL, int $depth = 1)
+    {
+        return -1;
+    }
 }
