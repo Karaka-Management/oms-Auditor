@@ -37,6 +37,9 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected ApplicationAbstract $app;
 
+    /**
+     * @var \Modules\Auditor\Controller\ApiController
+     */
     protected ModuleAbstract $module;
 
     protected function setUp() : void
@@ -137,6 +140,10 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue($found);
     }
 
+    /**
+     * @covers Modules\Auditor\Controller\ApiController
+     * @group module
+     */
     public function testLogUpdateWithoutChange() : void
     {
         $logs = AuditMapper::getAll();
