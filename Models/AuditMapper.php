@@ -56,7 +56,7 @@ final class AuditMapper extends DataMapperAbstract
      */
     protected static array $belongsTo = [
         'createdBy' => [
-            'mapper' => AccountMapper::class,
+            'mapper'     => AccountMapper::class,
             'external'   => 'auditor_audit_created_by',
         ],
     ];
