@@ -17,7 +17,6 @@ namespace Modules\Auditor\Controller;
 use Modules\Admin\Models\NullAccount;
 use Modules\Auditor\Models\Audit;
 use Modules\Auditor\Models\AuditMapper;
-use phpOMS\Account\Account;
 use phpOMS\Utils\StringUtils;
 
 /**
@@ -38,7 +37,7 @@ final class ApiController extends Controller
     /**
      * Log model creation
      *
-     * @param mixed  $account Account who created the model
+     * @param int    $account Account who created the model
      * @param mixed  $old     Old value (always null)
      * @param mixed  $new     New value
      * @param int    $type    Module model type
@@ -55,7 +54,7 @@ final class ApiController extends Controller
      * @since 1.0.0
      */
     public function apiLogCreate(
-        $account,
+        int $account,
         $old,
         $new,
         int $type = 0,
@@ -75,7 +74,7 @@ final class ApiController extends Controller
     /**
      * Log model update
      *
-     * @param mixed  $account Account who created the model
+     * @param int    $account Account who created the model
      * @param mixed  $old     Old value
      * @param mixed  $new     New value
      * @param int    $type    Module model type
@@ -92,7 +91,7 @@ final class ApiController extends Controller
      * @since 1.0.0
      */
     public function apiLogUpdate(
-        $account,
+        int $account,
         $old,
         $new,
         int $type = 0,
@@ -118,7 +117,7 @@ final class ApiController extends Controller
     /**
      * Log model delete
      *
-     * @param mixed  $account Account who created the model
+     * @param int    $account Account who created the model
      * @param mixed  $old     Old value
      * @param mixed  $new     New value (always null)
      * @param int    $type    Module model type
@@ -135,7 +134,7 @@ final class ApiController extends Controller
      * @since 1.0.0
      */
     public function apiLogDelete(
-        $account,
+        int $account,
         $old,
         $new,
         int $type = 0,
