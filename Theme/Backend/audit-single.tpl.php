@@ -51,10 +51,10 @@ echo $this->getData('nav')->render();
 
                     <tr>
                         <th>Created By
-                        <td><?= $audit->getCreatedBy()->getName1(); ?>
+                        <td><?= $audit->createdBy->name1; ?>
                     <tr>
                         <th>Created At
-                        <td><?= $this->getDateTime($audit->getCreatedAt(), 'long'); ?>
+                        <td><?= $this->getDateTime($audit->createdAt, 'long'); ?>
                     <tr>
                         <th>Module
                         <td><?= $audit->getModule(); ?>

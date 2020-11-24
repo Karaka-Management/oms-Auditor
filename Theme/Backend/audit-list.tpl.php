@@ -65,9 +65,9 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($audit->getOld()); ?>
                         <td><?= $this->printHtml($audit->getNew()); ?>
                         <td><?= $this->printHtml($audit->getContent()); ?>
-                        <td><?= $this->printHtml($audit->getCreatedBy()->getName()); ?>
+                        <td><?= $this->printHtml($audit->createdBy->login); ?>
                         <td><?= $this->printHtml($audit->getRef()); ?>
-                        <td><?= $audit->getCreatedAt()->format('Y-m-d H:i'); ?>
+                        <td><?= $audit->createdAt->format('Y-m-d H:i'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
                     <tr><td colspan="10" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>

@@ -41,8 +41,8 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertNull($audit->getOld());
         self::assertNull($audit->getNew());
         self::assertEquals(0, $audit->getIp());
-        self::assertEquals(0, $audit->getCreatedBy()->getId());
-        self::assertInstanceOf('\DateTimeImmutable', $audit->getCreatedAt());
+        self::assertEquals(0, $audit->createdBy->getId());
+        self::assertInstanceOf('\DateTimeImmutable', $audit->createdAt);
     }
 
     /**
@@ -70,6 +70,6 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('old', $audit->getOld());
         self::assertEquals('new', $audit->getNew());
         self::assertEquals(\ip2long('127.0.0.1'), $audit->getIp());
-        self::assertEquals(0, $audit->getCreatedBy()->getId());
+        self::assertEquals(0, $audit->createdBy->getId());
     }
 }

@@ -101,7 +101,7 @@ class Audit
      * @var Account
      * @since 1.0.0
      */
-    private Account $createdBy;
+    public Account $createdBy;
 
     /**
      * Created at.
@@ -109,7 +109,7 @@ class Audit
      * @var \DateTimeImmutable
      * @since 1.0.0
      */
-    private \DateTimeImmutable $createdAt;
+    public \DateTimeImmutable $createdAt;
 
     /**
      * Ip of creator.
@@ -253,30 +253,6 @@ class Audit
     public function getNew() : ?string
     {
         return $this->new;
-    }
-
-    /**
-     * Get created by.
-     *
-     * @return Account|int
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedBy()
-    {
-        return $this->createdBy;
-    }
-
-    /**
-     * Get created at.
-     *
-     * @return \DateTimeImmutable
-     *
-     * @since 1.0.0
-     */
-    public function getCreatedAt() : \DateTimeImmutable
-    {
-        return $this->createdAt;
     }
 
     /**
