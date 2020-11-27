@@ -61,7 +61,7 @@ final class ApiController extends Controller
     ) : void
     {
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
+        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -104,7 +104,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $audit = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
+        $audit = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -141,7 +141,7 @@ final class ApiController extends Controller
     ) : void
     {
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $subtype, $module, $ref, $content, \ip2long($ip ?? '127.0.0.1'));
+        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
