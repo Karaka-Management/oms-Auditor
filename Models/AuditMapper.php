@@ -96,7 +96,7 @@ final class AuditMapper extends DataMapperAbstract
     /**
      * {@inheritdoc}
      */
-    public static function delete($obj, int $relations = RelationType::REFERENCE)
+    public static function delete($obj, int $relations = RelationType::REFERENCE) : mixed
     {
         return -1;
     }
@@ -104,7 +104,7 @@ final class AuditMapper extends DataMapperAbstract
     /**
      * {@inheritdoc}
      */
-    public static function update($obj, int $relations = RelationType::ALL, int $depth = 3)
+    public static function update($obj, int $relations = RelationType::ALL, int $depth = 3) : mixed
     {
         return -1;
     }
@@ -112,7 +112,7 @@ final class AuditMapper extends DataMapperAbstract
     /**
      * {@inheritdoc}
      */
-    public static function updateArray(array &$obj, int $relations = RelationType::ALL, int $depth = 1)
+    public static function updateArray(array &$obj, int $relations = RelationType::ALL, int $depth = 1) : mixed
     {
         return -1;
     }
