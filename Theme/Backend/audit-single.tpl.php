@@ -54,7 +54,7 @@ echo $this->getData('nav')->render();
                         <td><?= $audit->createdBy->name1; ?>
                     <tr>
                         <th>Created At
-                        <td><?= $this->getDateTime($audit->createdAt, 'long'); ?>
+                        <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
                     <tr>
                         <th>Module
                         <td><?= $audit->getModule(); ?>
