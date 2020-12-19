@@ -36,7 +36,7 @@ final class ApiController extends Controller
      * @param mixed  $old     Old value (always null)
      * @param mixed  $new     New value
      * @param int    $type    Module model type
-     * @param int    $subtype Module model subtype
+     * @param string $trigger What triggered this log?
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
@@ -50,10 +50,10 @@ final class ApiController extends Controller
      */
     public function apiLogCreate(
         int $account,
-        $old,
-        $new,
+        mixed $old,
+        mixed $new,
         int $type = 0,
-        int $subtype = 0,
+        string $trigger = '',
         string $module = null,
         string $ref = null,
         string $content = null,
@@ -61,7 +61,7 @@ final class ApiController extends Controller
     ) : void
     {
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
+        $audit     = new Audit(new NullAccount($account), null, $newString, $type, $trigger, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -73,7 +73,7 @@ final class ApiController extends Controller
      * @param mixed  $old     Old value
      * @param mixed  $new     New value
      * @param int    $type    Module model type
-     * @param int    $subtype Module model subtype
+     * @param string $trigger What triggered this log?
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
@@ -87,10 +87,10 @@ final class ApiController extends Controller
      */
     public function apiLogUpdate(
         int $account,
-        $old,
-        $new,
+        mixed $old,
+        mixed $new,
         int $type = 0,
-        int $subtype = 0,
+        string $trigger = '',
         string $module = null,
         string $ref = null,
         string $content = null,
@@ -104,7 +104,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $audit = new Audit(new NullAccount($account), $oldString, $newString, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
+        $audit = new Audit(new NullAccount($account), $oldString, $newString, $type, $trigger, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }
@@ -116,7 +116,7 @@ final class ApiController extends Controller
      * @param mixed  $old     Old value
      * @param mixed  $new     New value (always null)
      * @param int    $type    Module model type
-     * @param int    $subtype Module model subtype
+     * @param string $trigger What triggered this log?
      * @param string $module  Module name
      * @param string $ref     Reference to other model
      * @param string $content Message
@@ -130,10 +130,10 @@ final class ApiController extends Controller
      */
     public function apiLogDelete(
         int $account,
-        $old,
-        $new,
+        mixed $old,
+        mixed $new,
         int $type = 0,
-        int $subtype = 0,
+        string $trigger = '',
         string $module = null,
         string $ref = null,
         string $content = null,
@@ -141,7 +141,7 @@ final class ApiController extends Controller
     ) : void
     {
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
-        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $subtype, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
+        $audit     = new Audit(new NullAccount($account), $oldString, null, $type, $trigger, $module, $ref, $content, (int) \ip2long($ip ?? '127.0.0.1'));
 
         AuditMapper::create($audit);
     }

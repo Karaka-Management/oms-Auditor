@@ -13,6 +13,7 @@
 declare(strict_types=1);
 
 use phpOMS\Message\Http\HttpHeader;
+use phpOMS\Uri\UriFactory;
 use phpOMS\Views\ViewAbstract;
 
 /** @var \phpOMS\Views\View $this */
@@ -51,13 +52,13 @@ echo $this->getData('nav')->render();
 
                     <tr>
                         <th>Created By
-                        <td><?= $audit->createdBy->name1; ?>
+                        <td><a href="<?= UriFactory::build('{/prefix}admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?></a>
                     <tr>
                         <th>Created At
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
                     <tr>
                         <th>Module
-                        <td><?= $audit->getModule(); ?>
+                        <td><a href="<?= UriFactory::build('{/prefix}admin/module/settings?{?}&id=' . $audit->getModule()); ?>"><?= $audit->getModule(); ?></a>
                     <tr>
                         <th>IP
                         <td><?= \long2ip($audit->getIp()); ?>

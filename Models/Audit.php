@@ -44,12 +44,12 @@ class Audit
     private int $type;
 
     /**
-     * Audit subtype.
+     * Audit trigger.
      *
-     * @var int
+     * @var string
      * @since 1.0.0
      */
-    private int $subtype;
+    private string $trigger;
 
     /**
      * Audit module.
@@ -126,7 +126,7 @@ class Audit
      * @param null|string $old     Old value
      * @param null|string $new     New value
      * @param int         $type    Type of the audit
-     * @param int         $subtype Subtype of the audit
+     * @param string      $trigger Subtype of the audit
      * @param null|string $module  Module id
      * @param null|string $ref     Dynamic reference to model
      * @param null|string $content Additional audit information
@@ -139,7 +139,7 @@ class Audit
         string $old = null,
         string $new = null,
         int $type = 0,
-        int $subtype = 0,
+        string $trigger = '',
         string $module = null,
         string $ref = null,
         string $content = null,
@@ -150,7 +150,7 @@ class Audit
         $this->old       = $old;
         $this->new       = $new;
         $this->type      = $type;
-        $this->subtype   = $subtype;
+        $this->trigger   = $trigger;
         $this->module    = $module;
         $this->ref       = $ref;
         $this->content   = $content;
@@ -188,9 +188,9 @@ class Audit
      *
      * @since 1.0.0
      */
-    public function getSubType() : int
+    public function getTrigger() : string
     {
-        return $this->subtype;
+        return $this->trigger;
     }
 
     /**

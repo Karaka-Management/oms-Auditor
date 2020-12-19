@@ -42,7 +42,7 @@ final class AuditMapper extends DataMapperAbstract
         'auditor_audit_module'     => ['name' => 'auditor_audit_module',     'type' => 'string',   'internal' => 'module'],
         'auditor_audit_ref'        => ['name' => 'auditor_audit_ref',        'type' => 'string',   'internal' => 'ref'],
         'auditor_audit_type'       => ['name' => 'auditor_audit_type',       'type' => 'int',      'internal' => 'type'],
-        'auditor_audit_subtype'    => ['name' => 'auditor_audit_subtype',    'type' => 'int',      'internal' => 'subtype'],
+        'auditor_audit_trigger'    => ['name' => 'auditor_audit_trigger',    'type' => 'string',   'internal' => 'trigger'],
         'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'string',   'internal' => 'content'],
         'auditor_audit_old'        => ['name' => 'auditor_audit_old',        'type' => 'string',   'internal' => 'old'],
         'auditor_audit_new'        => ['name' => 'auditor_audit_new',        'type' => 'string',   'internal' => 'new'],

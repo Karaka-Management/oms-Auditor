@@ -36,8 +36,6 @@ echo $this->getData('nav')->render(); ?>
                     <col style="width: 100px">
                     <col style="width: 75px">
                     <col>
-                    <col>
-                    <col>
                     <col style="width: 125px">
                     <col style="width: 75px">
                     <col style="width: 150px">
@@ -47,9 +45,7 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
                     <td ><?= $this->getHtml('Module'); ?>
                     <td ><?= $this->getHtml('Type'); ?>
-                    <td ><?= $this->getHtml('Subtype'); ?>
-                    <td ><?= $this->getHtml('Old'); ?>
-                    <td ><?= $this->getHtml('New'); ?>
+                    <td ><?= $this->getHtml('Trigger'); ?>
                     <td ><?= $this->getHtml('Content'); ?>
                     <td ><?= $this->getHtml('By'); ?>
                     <td ><?= $this->getHtml('Ref'); ?>
@@ -61,16 +57,14 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
                         <td><?= $audit->getType(); ?>
-                        <td><?= $audit->getSubtype(); ?>
-                        <td><?= $this->printHtml($audit->getOld()); ?>
-                        <td><?= $this->printHtml($audit->getNew()); ?>
+                        <td><?= $audit->getTrigger(); ?>
                         <td><?= $this->printHtml($audit->getContent()); ?>
                         <td><?= $this->printHtml($audit->createdBy->login); ?>
                         <td><?= $this->printHtml($audit->getRef()); ?>
                         <td><?= $audit->createdAt->format('Y-m-d H:i'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
-                    <tr><td colspan="10" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
+                    <tr><td colspan="8" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
                 <?php endif; ?>
             </table>
             <div class="portlet-foot">

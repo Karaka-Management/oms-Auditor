@@ -26,9 +26,9 @@
                 "type": "INT",
                 "null": false
             },
-            "auditor_audit_subtype": {
-                "name": "auditor_audit_subtype",
-                "type": "INT",
+            "auditor_audit_trigger": {
+                "name": "auditor_audit_trigger",
+                "type": "VARCHAR(255)",
                 "null": false
             },
             "auditor_audit_content": {
