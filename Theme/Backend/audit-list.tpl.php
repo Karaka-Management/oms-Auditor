@@ -34,22 +34,22 @@ echo $this->getData('nav')->render(); ?>
                     <col style="width: 75px">
                     <col style="width: 150px">
                     <col style="width: 100px">
-                    <col style="width: 75px">
+                    <col>
                     <col>
                     <col style="width: 125px">
                     <col style="width: 75px">
-                    <col style="width: 150px">
+                    <col style="width: 170px">
                 </colgroup>
                 <thead>
                 <tr>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
-                    <td ><?= $this->getHtml('Module'); ?>
-                    <td ><?= $this->getHtml('Type'); ?>
-                    <td ><?= $this->getHtml('Trigger'); ?>
-                    <td ><?= $this->getHtml('Content'); ?>
-                    <td ><?= $this->getHtml('By'); ?>
-                    <td ><?= $this->getHtml('Ref'); ?>
-                    <td ><?= $this->getHtml('Date'); ?>
+                    <td><?= $this->getHtml('Module'); ?>
+                    <td><?= $this->getHtml('Type'); ?>
+                    <td><?= $this->getHtml('Trigger'); ?>
+                    <td><?= $this->getHtml('Content'); ?>
+                    <td><?= $this->getHtml('By'); ?>
+                    <td><?= $this->getHtml('Ref'); ?>
+                    <td><?= $this->getHtml('Date'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($audits as $key => $audit) : ++$count;
                 $url         = UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
@@ -61,7 +61,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($audit->getContent()); ?>
                         <td><?= $this->printHtml($audit->createdBy->login); ?>
                         <td><?= $this->printHtml($audit->getRef()); ?>
-                        <td><?= $audit->createdAt->format('Y-m-d H:i'); ?>
+                        <td><?= $audit->createdAt->format('Y-m-d H:i:s'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
                     <tr><td colspan="8" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
