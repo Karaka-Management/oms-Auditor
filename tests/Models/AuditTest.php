@@ -34,7 +34,7 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         $audit = new Audit();
         self::assertEquals(0, $audit->getId());
         self::assertEquals(0, $audit->getType());
-        self::assertEquals(0, $audit->getSubType());
+        self::assertEquals('', $audit->getTrigger());
         self::assertNull($audit->getModule());
         self::assertNull($audit->getRef());
         self::assertNull($audit->getContent());
@@ -55,7 +55,7 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         $audit = new Audit(
             new Account(),
             'old', 'new',
-            1, 2,
+            1, 'trigger',
             '3',
             'test',
             'content',
@@ -63,7 +63,7 @@ class AuditTest extends \PHPUnit\Framework\TestCase
         );
 
         self::assertEquals(1, $audit->getType());
-        self::assertEquals(2, $audit->getSubType());
+        self::assertEquals('trigger', $audit->getTrigger());
         self::assertEquals(3, $audit->getModule());
         self::assertEquals('test', $audit->getRef());
         self::assertEquals('content', $audit->getContent());
