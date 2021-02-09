@@ -42,22 +42,23 @@ echo $this->getData('nav')->render();
             <div class="portlet-body">
                 <table class="list">
                     <tr>
-                        <th>Type
-                        <td>
-                            <?php if ($audit->getOld() === null) : echo 'CREATE'; ?>
-                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo 'UPDATE'; ?>
-                            <?php elseif ($audit->getNew() === null) : echo 'DELETE'; ?>
-                            <?php else : echo 'UNKNOWN'; ?>
+                        <th><?= $this->getHtml('Action'); ?>
+                        <td><?php if ($audit->getOld() === null) : echo $this->getHtml('CREATE'); ?>
+                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo $this->getHtml('UPDATE'); ?>
+                            <?php elseif ($audit->getNew() === null) : echo $this->getHtml('DELETE'); ?>
+                            <?php else : echo $this->getHtml('UNKNOWN'); ?>
                             <?php endif; ?>
-
                     <tr>
-                        <th>Created By
+                        <th><?= $this->getHtml('Type'); ?>
+                        <td><?= $audit->getType(); ?>
+                    <tr>
+                        <th><?= $this->getHtml('By'); ?>
                         <td><a href="<?= UriFactory::build('{/prefix}admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?></a>
                     <tr>
-                        <th>Created At
+                        <th><?= $this->getHtml('Date'); ?>
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
                     <tr>
-                        <th>Module
+                        <th><?= $this->getHtml('Module'); ?>
                         <td><a href="<?= UriFactory::build('{/prefix}admin/module/settings?{?}&id=' . $audit->getModule()); ?>"><?= $audit->getModule(); ?></a>
                     <tr>
                         <th>IP

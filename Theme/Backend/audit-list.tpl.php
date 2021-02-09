@@ -44,6 +44,7 @@ echo $this->getData('nav')->render(); ?>
                 <tr>
                     <td><?= $this->getHtml('ID', '0', '0'); ?>
                     <td><?= $this->getHtml('Module'); ?>
+                    <td><?= $this->getHtml('Action'); ?>
                     <td><?= $this->getHtml('Type'); ?>
                     <td><?= $this->getHtml('Trigger'); ?>
                     <td><?= $this->getHtml('Content'); ?>
@@ -56,6 +57,11 @@ echo $this->getData('nav')->render(); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
+                        <td><?php if ($audit->getOld() === null) : echo $this->getHtml('CREATE'); ?>
+                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo $this->getHtml('UPDATE'); ?>
+                            <?php elseif ($audit->getNew() === null) : echo $this->getHtml('DELETE'); ?>
+                            <?php else : echo $this->getHtml('UNKNOWN'); ?>
+                            <?php endif; ?>
                         <td><?= $audit->getType(); ?>
                         <td><?= $audit->getTrigger(); ?>
                         <td><?= $this->printHtml($audit->getContent()); ?>
