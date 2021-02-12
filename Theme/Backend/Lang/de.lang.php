@@ -12,11 +12,14 @@
 declare(strict_types=1);
 
 return ['Auditor' => [
+    'Action'  => '',
     'Audit'   => '',
     'Auditor' => '',
     'Audits'  => '',
     'By'      => '',
+    'CREATE'  => '',
     'Content' => '',
+    'DELETE'  => '',
     'Date'    => '',
     'Email'   => '',
     'Module'  => '',
@@ -25,6 +28,8 @@ return ['Auditor' => [
     'Old'     => '',
     'Ref'     => '',
     'Subtype' => '',
-    'Type'    => '',
     'Trigger' => '',
+    'Type'    => '',
+    'UNKNOWN' => '',
+    'UPDATE'  => '',
 ]];
