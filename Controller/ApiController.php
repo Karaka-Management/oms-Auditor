@@ -48,7 +48,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiLogCreate(
+    public function eventLogCreate(
         int $account,
         mixed $old,
         mixed $new,
@@ -85,7 +85,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiLogUpdate(
+    public function eventLogUpdate(
         int $account,
         mixed $old,
         mixed $new,
@@ -128,7 +128,7 @@ final class ApiController extends Controller
      *
      * @since 1.0.0
      */
-    public function apiLogDelete(
+    public function eventLogDelete(
         int $account,
         mixed $old,
         mixed $new,

@@ -4,6 +4,7 @@
  *
  * PHP Version 8.0
  *
+ * @package   Modules\Localization
  * @copyright Dennis Eichhorn
  * @license   OMS License 1.0
  * @version   1.0.0
@@ -12,14 +13,14 @@
 declare(strict_types=1);
 
 return ['Auditor' => [
-    'Action'  => '',
+    'Action'  => 'Action',
     'Audit'   => 'Audit',
     'Auditor' => 'Auditor',
     'Audits'  => 'Audits',
     'By'      => 'By',
-    'CREATE'  => '',
+    'CREATE'  => 'Create',
     'Content' => 'Content',
-    'DELETE'  => '',
+    'DELETE'  => 'Delete',
     'Date'    => 'Date',
     'Email'   => 'Email',
     'Module'  => 'Module',
@@ -28,8 +29,8 @@ return ['Auditor' => [
     'Old'     => 'Old',
     'Ref'     => 'Ref',
     'Subtype' => 'Subtype',
-    'Trigger' => '',
+    'Trigger' => 'Trigger',
     'Type'    => 'Type',
-    'UNKNOWN' => '',
-    'UPDATE'  => '',
+    'UNKNOWN' => 'Unknown',
+    'UPDATE'  => 'Update',
 ]];

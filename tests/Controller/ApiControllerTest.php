@@ -89,7 +89,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
      */
     public function testLogCreate() : void
     {
-        $this->module->apiLogCreate(1, null, ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
+        $this->module->eventLogCreate(1, null, ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
         $logs = AuditMapper::getAll();
 
         foreach($logs as $log) {
@@ -117,7 +117,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
      */
     public function testLogUpdate() : void
     {
-        $this->module->apiLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
+        $this->module->eventLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
         $logs = AuditMapper::getAll();
 
         $found = false;
@@ -146,7 +146,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testLogUpdateWithoutChange() : void
     {
         $logs = AuditMapper::getAll();
-        $this->module->apiLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 2, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
+        $this->module->eventLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 2, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
         $logs2 = AuditMapper::getAll();
 
         self::assertGreaterThan(0, \count($logs));
@@ -160,7 +160,7 @@ class ApiControllerTest extends \PHPUnit\Framework\TestCase
      */
     public function testLogDelete() : void
     {
-        $this->module->apiLogDelete(1, ['id' => 1, 'test' => true], null, 1, 'test-trigger', 'Auditor', 'abc', 'def');
+        $this->module->eventLogDelete(1, ['id' => 1, 'test' => true], null, 1, 'test-trigger', 'Auditor', 'abc', 'def');
         $logs = AuditMapper::getAll();
 
         foreach($logs as $log) {
