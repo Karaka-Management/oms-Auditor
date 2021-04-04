@@ -184,7 +184,7 @@ class Audit
     /**
      * Get subtype.
      *
-     * @return int
+     * @return string
      *
      * @since 1.0.0
      */
