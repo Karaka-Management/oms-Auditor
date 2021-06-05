@@ -1,0 +1,20 @@
+[
+    {
+        "type": "collection",
+        "create_directory": true,
+        "name": "Auditor",
+        "virtualPath": "/Modules",
+        "user": 1
+    },
+    {
+        "type": "upload",
+        "create_collection": true,
+        "name": "Default",
+        "virtualPath": "/Modules/Auditor",
+        "path": "/Modules/Media/Files/Modules/Auditor",
+        "files": [
+            "/Modules/Auditor/Admin/Install/Media/defaultReport.pdf.php"
+        ],
+        "user": 1
+    }
+]
