@@ -141,7 +141,7 @@ echo $this->getData('nav')->render(); ?>
                             <?php endif; ?>
                         <td><?= $audit->getType(); ?>
                         <td><?= $audit->getTrigger(); ?>
-                        <td><?= $this->printHtml($audit->createdBy->login); ?>
+                        <td><a class="content" href="<?= UriFactory::build('{/prefix}admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml($audit->createdBy->login); ?></a>
                         <td><?= $this->printHtml($audit->getRef()); ?>
                         <td><?= $audit->createdAt->format('Y-m-d H:i:s'); ?>
                 <?php endforeach; ?>
