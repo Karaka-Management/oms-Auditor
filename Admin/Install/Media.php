@@ -45,6 +45,6 @@ class Media
         $defaultTemplate = \reset($media['upload'][0]);
 
         $setting = new Setting();
-        SettingMapper::create($setting->with(0, 'default_pdf_template', (string) $defaultTemplate->getId(), 'Auditor'));
+        SettingMapper::create($setting->with(0, 'default_pdf_template', (string) $defaultTemplate->getId(), '\\d+', 'Auditor'));
     }
 }

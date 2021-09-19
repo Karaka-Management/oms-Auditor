@@ -49,11 +49,11 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         if ($request->getData('ptype') === 'p') {
-            $view->setData('audits', AuditMapper::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25));
+            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25));
         } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('audits', AuditMapper::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
+            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
         } else {
-            $view->setData('audits', AuditMapper::getAfterPivot(0, null, 25));
+            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot(0, null, 25));
         }
 
         return $view;

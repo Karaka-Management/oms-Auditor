@@ -66,8 +66,14 @@ echo $this->getData('nav')->render();
                 </table>
                 <article>
                     <pre><?= \phpOMS\Utils\StringUtils::createDiffMarkup(
-                            ViewAbstract::html($audit->getOld() ?? ''),
-                            ViewAbstract::html($audit->getNew() ?? ''),
+                            ViewAbstract::html(\stripos($audit->getOld() ?? '', '{') === 0
+                                ? \json_encode(\json_decode($audit->getOld()), \JSON_PRETTY_PRINT)
+                                : $audit->getOld() ?? ''
+                            ),
+                            ViewAbstract::html(\stripos($audit->getNew() ?? '', '{') === 0
+                                ? \json_encode(\json_decode($audit->getNew()), \JSON_PRETTY_PRINT)
+                                : $audit->getNew() ?? ''
+                            ),
                             "\n"
                         ); ?>
                     </pre>
