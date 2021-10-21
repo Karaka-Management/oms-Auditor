@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Audit\tests\Controller;
+namespace Modules\Auditor\tests\Controller;
 
 use Model\CoreSettings;
 use Modules\Admin\Models\AccountPermission;

@@ -19,11 +19,11 @@ use Modules\Auditor\Models\NullAudit;
 /**
  * @internal
  */
-final class NullAuditTest extends \PHPUnit\Framework\TestCase
+final class Null extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\Auditor\Models\NullAudit
-     * @group module
+     * @group framework
      */
     public function testNull() : void
     {
