@@ -22,7 +22,7 @@ use phpOMS\Account\Account;
  *
  * @internal
  */
-class AuditTest extends \PHPUnit\Framework\TestCase
+final class AuditTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @testdox The model has the expected default values after initialization

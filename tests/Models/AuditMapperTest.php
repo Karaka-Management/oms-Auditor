@@ -19,7 +19,7 @@ use Modules\Auditor\Models\AuditMapper;
 /**
  * @internal
  */
-class AuditMapperTest extends \PHPUnit\Framework\TestCase
+final class AuditMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\Auditor\Models\AuditMapper
