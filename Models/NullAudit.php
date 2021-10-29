@@ -24,7 +24,7 @@ namespace Modules\Auditor\Models;
  */
 final class NullAudit extends Audit
 {
-	/**
+    /**
      * Constructor
      *
      * @param int $id Model id
