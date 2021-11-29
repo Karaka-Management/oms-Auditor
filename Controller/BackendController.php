@@ -54,7 +54,7 @@ final class BackendController extends Controller
         } elseif ($request->getData('ptype') === 'n') {
             $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
         } else {
-            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot(0, null, 25));
+            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot(0, null, 25, depth: 2));
         }
 
         return $view;

@@ -53,7 +53,10 @@ echo $this->getData('nav')->render();
                         <td><?= $audit->getType(); ?>
                     <tr>
                         <th><?= $this->getHtml('By'); ?>
-                        <td><a href="<?= UriFactory::build('{/prefix}admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?></a>
+                        <td><a href="<?= UriFactory::build('{/prefix}admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
+                    <tr>
+                        <th><?= $this->getHtml('Ref'); ?>
+                        <td><?= $this->printHtml($audit->getRef()); ?>
                     <tr>
                         <th><?= $this->getHtml('Date'); ?>
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
@@ -61,7 +64,7 @@ echo $this->getData('nav')->render();
                         <th><?= $this->getHtml('Module'); ?>
                         <td><a href="<?= UriFactory::build('{/prefix}admin/module/settings?{?}&id=' . $audit->getModule()); ?>"><?= $audit->getModule(); ?></a>
                     <tr>
-                        <th>IP
+                        <th><?= $this->getHtml('IP'); ?>
                         <td><?= \long2ip($audit->getIp()); ?>
                 </table>
                 <article>
