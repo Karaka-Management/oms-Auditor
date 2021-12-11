@@ -16,6 +16,7 @@ namespace Modules\Auditor\Controller;
 
 use Modules\Auditor\Models\AuditMapper;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -50,11 +51,11 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         if ($request->getData('ptype') === 'p') {
-            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getBeforePivot((int) ($request->getData('id') ?? 0), null, 25));
+            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '<')->limit(25)->execute());
         } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot((int) ($request->getData('id') ?? 0), null, 25));
+            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '>')->limit(25)->execute());
         } else {
-            $view->setData('audits', AuditMapper::sortBy('createdAt', 'DESC')::getAfterPivot(0, null, 25, depth: 2));
+            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute());
         }
 
         return $view;
@@ -79,7 +80,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         /** @var \Modules\Auditor\Models\Audit $audit */
-        $audit = AuditMapper::get((int) $request->getData('id'));
+        $audit = AuditMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->setData('audit', $audit);
 
         return $view;

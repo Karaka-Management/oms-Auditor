@@ -15,8 +15,7 @@ declare(strict_types=1);
 namespace Modules\Auditor\Models;
 
 use Modules\Admin\Models\AccountMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
-use phpOMS\DataStorage\Database\RelationType;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -26,7 +25,7 @@ use phpOMS\DataStorage\Database\RelationType;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class AuditMapper extends DataMapperAbstract
+final class AuditMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -34,7 +33,7 @@ final class AuditMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'auditor_audit_id'         => ['name' => 'auditor_audit_id',         'type' => 'int',      'internal' => 'id'],
         'auditor_audit_created_by' => ['name' => 'auditor_audit_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
         'auditor_audit_created_at' => ['name' => 'auditor_audit_created_at', 'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
@@ -54,7 +53,7 @@ final class AuditMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'auditor_audit_created_by',
@@ -67,7 +66,7 @@ final class AuditMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $model = Audit::class;
+    public const MODEL = Audit::class;
 
     /**
      * Primary table.
@@ -75,7 +74,7 @@ final class AuditMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'auditor_audit';
+    public const TABLE = 'auditor_audit';
 
     /**
      * Primary field name.
@@ -83,7 +82,7 @@ final class AuditMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'auditor_audit_id';
+    public const PRIMARYFIELD ='auditor_audit_id';
 
     /**
      * Created at.
@@ -91,29 +90,5 @@ final class AuditMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'auditor_audit_created_at';
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function delete($obj, int $relations = RelationType::REFERENCE) : mixed
-    {
-        return -1;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function update($obj, int $relations = RelationType::ALL, int $depth = 3) : mixed
-    {
-        return -1;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function updateArray(array &$obj, int $relations = RelationType::ALL, int $depth = 1) : mixed
-    {
-        return -1;
-    }
+    public const CREATED_AT = 'auditor_audit_created_at';
 }
