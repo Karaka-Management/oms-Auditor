@@ -34,17 +34,17 @@ final class AuditMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'auditor_audit_id'         => ['name' => 'auditor_audit_id',         'type' => 'int',      'internal' => 'id'],
-        'auditor_audit_created_by' => ['name' => 'auditor_audit_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
+        'auditor_audit_id'         => ['name' => 'auditor_audit_id',         'type' => 'int',               'internal' => 'id'],
+        'auditor_audit_created_by' => ['name' => 'auditor_audit_created_by', 'type' => 'int',               'internal' => 'createdBy', 'readonly' => true],
         'auditor_audit_created_at' => ['name' => 'auditor_audit_created_at', 'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
-        'auditor_audit_ip'         => ['name' => 'auditor_audit_ip',         'type' => 'int',      'internal' => 'ip', 'annotations' => ['gdpr' => true]],
-        'auditor_audit_module'     => ['name' => 'auditor_audit_module',     'type' => 'string',   'internal' => 'module'],
-        'auditor_audit_ref'        => ['name' => 'auditor_audit_ref',        'type' => 'string',   'internal' => 'ref'],
-        'auditor_audit_type'       => ['name' => 'auditor_audit_type',       'type' => 'int',      'internal' => 'type'],
-        'auditor_audit_trigger'    => ['name' => 'auditor_audit_trigger',    'type' => 'string',   'internal' => 'trigger'],
-        'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'string',   'internal' => 'content'],
-        'auditor_audit_old'        => ['name' => 'auditor_audit_old',        'type' => 'string',   'internal' => 'old'],
-        'auditor_audit_new'        => ['name' => 'auditor_audit_new',        'type' => 'string',   'internal' => 'new'],
+        'auditor_audit_ip'         => ['name' => 'auditor_audit_ip',         'type' => 'int',               'internal' => 'ip', 'annotations' => ['gdpr' => true]],
+        'auditor_audit_module'     => ['name' => 'auditor_audit_module',     'type' => 'string',            'internal' => 'module'],
+        'auditor_audit_ref'        => ['name' => 'auditor_audit_ref',        'type' => 'string',            'internal' => 'ref'],
+        'auditor_audit_type'       => ['name' => 'auditor_audit_type',       'type' => 'int',               'internal' => 'type'],
+        'auditor_audit_trigger'    => ['name' => 'auditor_audit_trigger',    'type' => 'string',            'internal' => 'trigger'],
+        'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'string',            'internal' => 'content'],
+        'auditor_audit_old'        => ['name' => 'auditor_audit_old',        'type' => 'string',            'internal' => 'old'],
+        'auditor_audit_new'        => ['name' => 'auditor_audit_new',        'type' => 'string',            'internal' => 'new'],
     ];
 
     /**
@@ -55,8 +55,8 @@ final class AuditMapper extends DataMapperFactory
      */
     public const BELONGS_TO = [
         'createdBy' => [
-            'mapper'     => AccountMapper::class,
-            'external'   => 'auditor_audit_created_by',
+            'mapper'   => AccountMapper::class,
+            'external' => 'auditor_audit_created_by',
         ],
     ];
 
