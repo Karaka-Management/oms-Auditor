@@ -28,7 +28,14 @@ echo $this->getData('nav')->render(); ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Audits'); ?><i class="fa fa-download floatRight download btn"></i></div>
+            <div class="portlet-head">
+                <span>
+                    <a href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left btn"></i></a>
+                    <?= $this->getHtml('Audits'); ?>
+                    <a href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right btn"></i></a>
+                </span>
+
+                <i class="fa fa-download floatRight download btn"></i></div>
             <div class="slider">
             <table id="auditList" class="default sticky">
                 <thead>

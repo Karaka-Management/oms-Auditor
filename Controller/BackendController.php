@@ -51,11 +51,19 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         if ($request->getData('ptype') === 'p') {
-            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '<')->limit(25)->execute());
+            $data = AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::ASC)->where('id', (int) ($request->getData('id') ?? 0), '>')->limit(25)->execute();
+
+            if (empty($data)) {
+                $data = AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute();
+            } else {
+                $data = \array_reverse($data);
+            }
+
+            $view->setData('audits', $data);
         } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '>')->limit(25)->execute());
+            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '<')->limit(25)->execute());
         } else {
-            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('createdAt', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute());
+            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute());
         }
 
         return $view;
@@ -80,7 +88,7 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         /** @var \Modules\Auditor\Models\Audit $audit */
-        $audit = AuditMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $audit = AuditMapper::get()->with('createdBy')->where('id', (int) $request->getData('id'))->execute();
         $view->setData('audit', $audit);
 
         return $view;
