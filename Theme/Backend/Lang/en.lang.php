@@ -23,6 +23,7 @@ return ['Auditor' => [
     'DELETE'  => 'Delete',
     'Date'    => 'Date',
     'Email'   => 'Email',
+    'IP'      => '',
     'Module'  => 'Module',
     'Name'    => 'Name',
     'New'     => 'New',

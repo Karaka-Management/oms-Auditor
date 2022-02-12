@@ -13,11 +13,11 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Accounts' => 'Accounts',
-    'Audit'    => 'Audit',
-    'Auditor'  => 'Auditor',
-    'Audits'   => 'Audits',
-    'Create'   => 'Create',
-    'List'     => 'List',
-    'Modules'  => 'Modules',
+    'Accounts' => 'accounts.',
+    'Audit'    => '심사',
+    'Auditor'  => '감사',
+    'Audits'   => '감사',
+    'Create'   => '만들다',
+    'List'     => '목록',
+    'Modules'  => '모듈',
 ]];

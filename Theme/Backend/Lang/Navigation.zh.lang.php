@@ -13,11 +13,11 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Accounts' => 'Accounts',
-    'Audit'    => 'Audit',
-    'Auditor'  => 'Auditor',
-    'Audits'   => 'Audits',
-    'Create'   => 'Create',
-    'List'     => 'List',
-    'Modules'  => 'Modules',
+    'Accounts' => '账户',
+    'Audit'    => '审计',
+    'Auditor'  => '审计员',
+    'Audits'   => '审计',
+    'Create'   => '创建',
+    'List'     => '列表',
+    'Modules'  => '模块',
 ]];

@@ -13,11 +13,11 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'Accounts' => 'Accounts',
-    'Audit'    => 'Audit',
-    'Auditor'  => 'Auditor',
-    'Audits'   => 'Audits',
-    'Create'   => 'Create',
-    'List'     => 'List',
-    'Modules'  => 'Modules',
+    'Accounts' => 'Облікові записи',
+    'Audit'    => 'Аудит',
+    'Auditor'  => 'Аудитор',
+    'Audits'   => 'Аудити',
+    'Create'   => 'Створювати',
+    'List'     => 'Список',
+    'Modules'  => 'Модулі',
 ]];
