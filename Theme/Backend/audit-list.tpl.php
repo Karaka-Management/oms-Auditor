@@ -150,7 +150,9 @@ echo $this->getData('nav')->render(); ?>
                             <?php endif; ?>
                         <td><?= $audit->getType(); ?>
                         <td><?= $audit->getTrigger(); ?>
-                        <td><a class="content" href="<?= UriFactory::build('{/prefix}admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml($audit->createdBy->login); ?></a>
+                        <td><a class="content" href="<?= UriFactory::build('{/prefix}admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
+                                $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
+                            ); ?></a>
                         <td><?= $this->printHtml($audit->getRef()); ?>
                         <td><?= $audit->createdAt->format('Y-m-d H:i:s'); ?>
                 <?php endforeach; ?>
