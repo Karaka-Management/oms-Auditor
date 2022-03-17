@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 use Modules\Auditor\Controller\BackendController;
-use Modules\Auditor\Models\PermissionState;
+use Modules\Auditor\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
@@ -25,7 +25,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::AUDIT,
+                'state'  => PermissionCategory::AUDIT,
             ],
         ],
     ],
@@ -36,7 +36,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::AUDIT,
+                'state'  => PermissionCategory::AUDIT,
             ],
         ],
     ],
