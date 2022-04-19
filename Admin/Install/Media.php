@@ -2,7 +2,7 @@
 /**
  * Karaka
  *
- * PHP Version 8.0
+ * PHP Version 8.1
  *
  * @package   Modules\Auditor\Admin\Install
  * @copyright Dennis Eichhorn
@@ -42,7 +42,7 @@ class Media
     {
         $media = \Modules\Media\Admin\Installer::installExternal($app, ['path' => __DIR__ . '/Media.install.json']);
 
-        $defaultTemplate = \reset($media['upload'][0]);
+        $defaultTemplate = (int) \reset($media['upload'][0]);
 
         $setting = new Setting();
         SettingMapper::create()->execute($setting->with(0, 'default_pdf_template', (string) $defaultTemplate, '\\d+', 1, 'Auditor'));
