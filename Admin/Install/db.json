@@ -63,7 +63,7 @@
             },
             "auditor_audit_ip": {
                 "name": "auditor_audit_ip",
-                "type": "INT",
+                "type": "BIGINT(20)",
                 "null": false
             }
         }
