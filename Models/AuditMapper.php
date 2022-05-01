@@ -171,7 +171,7 @@ final class AuditMapper extends DataMapperFactory
         return [
             'hasPrevious' => $hasPrevious,
             'hasNext'     => $hasNext,
-            'data'        => $data
+            'data'        => $data,
         ];
     }
 }

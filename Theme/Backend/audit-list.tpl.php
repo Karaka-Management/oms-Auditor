@@ -31,7 +31,7 @@ $next     = empty($audits)
         . ($this->getData('hasNext') ? \end($audits)->getId() : $this->request->getData('id'))
         . '&ptype=n';
 
-$tableView = $this->getData('tableView');
+$tableView     = $this->getData('tableView');
 $tableView->id = 'auditList';
 
 echo $this->getData('nav')->render(); ?>

@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Auditor\Controller;
 
-use View\TableView;
 use Modules\Admin\Models\SettingsEnum;
 use Modules\Auditor\Models\AuditMapper;
 use Modules\Media\Models\MediaMapper;
@@ -22,6 +21,7 @@ use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
+use View\TableView;
 
 /**
  * Calendar controller class.
