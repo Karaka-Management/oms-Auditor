@@ -16,6 +16,7 @@ namespace Modules\Auditor\Models;
 
 use Modules\Admin\Models\AccountMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
+use phpOMS\DataStorage\Database\Query\OrderType;
 
 /**
  * Mapper class.
@@ -91,4 +92,86 @@ final class AuditMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const CREATED_AT = 'auditor_audit_created_at';
+
+    public static function getAuditList(mixed $mapper, int $id, string $type = null, int $pageLimit) : array
+    {
+        /** @var \Modules\Auditor\Models\Audit[] $data */
+        $data = [];
+
+        $hasPrevious = false;
+        $hasNext     = false;
+
+        if ($type === 'p') {
+            $cloned = clone $mapper;
+            $data   = $mapper->sort('id', OrderType::ASC)
+                ->where('id', $id, '>=')
+                ->limit($pageLimit + 2)
+                ->execute();
+
+            if (($count = \count($data)) < 2) {
+                $data = $cloned->sort('id', OrderType::DESC)
+                    ->where('id', 0, '>')
+                    ->limit($pageLimit + 1)
+                    ->execute();
+
+                $hasNext = $count > $pageLimit;
+                if ($hasNext) {
+                    \array_pop($data);
+                    --$count;
+                }
+            } else {
+                if (\reset($data)->getId() === $id) {
+                    \array_shift($data);
+                    $hasNext = true;
+                    --$count;
+                }
+
+                if ($count > $pageLimit) {
+                    \array_pop($data);
+                    $hasNext = true;
+                    --$count;
+
+                    if ($count > $pageLimit) {
+                        $hasPrevious = true;
+                        \array_pop($data);
+                    }
+                }
+
+                $data = \array_reverse($data);
+            }
+        } elseif ($type === 'n') {
+            $data = $mapper->sort('id', OrderType::DESC)
+                ->where('id', $id, '<=')
+                ->limit($pageLimit + 2)
+                ->execute();
+
+            if (!empty($data)) {
+                if (\reset($data)->getId() === $id) {
+                    \array_shift($data);
+                    $hasPrevious = true;
+                }
+
+                if (\count($data) > $pageLimit) {
+                    \array_pop($data);
+                    $hasNext = true;
+                }
+            }
+        } else {
+            $data = $mapper->sort('id', OrderType::DESC)
+                ->where('id', 0, '>')
+                ->limit($pageLimit + 1)
+                ->execute();
+
+            $hasNext = ($count = \count($data)) > $pageLimit;
+            if ($hasNext) {
+                \array_pop($data);
+            }
+        }
+
+        return [
+            'hasPrevious' => $hasPrevious,
+            'hasNext'     => $hasNext,
+            'data'        => $data
+        ];
+    }
 }

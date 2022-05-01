@@ -11,7 +11,7 @@
         "create_collection": true,
         "name": "Default",
         "virtualPath": "/Modules/Auditor",
-        "path": "/Modules/Media/Files/Modules/Auditor",
+        "path": "/Modules/Auditor",
         "files": [
             "/Modules/Auditor/Admin/Install/Media/defaultReport.pdf.php"
         ],

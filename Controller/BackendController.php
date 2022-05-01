@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace Modules\Auditor\Controller;
 
+use View\TableView;
+use Modules\Admin\Models\SettingsEnum;
 use Modules\Auditor\Models\AuditMapper;
+use Modules\Media\Models\MediaMapper;
 use phpOMS\Contract\RenderableInterface;
-use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -50,21 +52,53 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
-        if ($request->getData('ptype') === 'p') {
-            $data = AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::ASC)->where('id', (int) ($request->getData('id') ?? 0), '>')->limit(25)->execute();
+        $pageLimit = 25;
+        $view->addData('pageLimit', $pageLimit);
 
-            if (empty($data)) {
-                $data = AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute();
-            } else {
-                $data = \array_reverse($data);
-            }
+        $mapper = AuditMapper::getAll()->with('createdBy');
+        $list   = AuditMapper::getAuditList(
+            $mapper,
+            (int) ($request->getData('id') ?? 0),
+            $request->getData('pType'),
+            25
+        );
 
-            $view->setData('audits', $data);
-        } elseif ($request->getData('ptype') === 'n') {
-            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', (int) ($request->getData('id') ?? 0), '<')->limit(25)->execute());
-        } else {
-            $view->setData('audits', AuditMapper::getAll()->with('createdBy')->sort('id', OrderType::DESC)->where('id', 0, '>')->limit(25)->execute());
+        $view->setData('hasPrevious', $list['hasPrevious']);
+        $view->setData('hasNext', $list['hasNext']);
+        $view->setData('audits', $list['data']);
+
+        /** @var \Model\Setting[] $exportTemplates */
+        $exportTemplates = $this->app->appSettings->get(
+            names: [
+                SettingsEnum::DEFAULT_PDF_EXPORT_TEMPLATE,
+                SettingsEnum::DEFAULT_EXCEL_EXPORT_TEMPLATE,
+                SettingsEnum::DEFAULT_CSV_EXPORT_TEMPLATE,
+                SettingsEnum::DEFAULT_WORD_EXPORT_TEMPLATE,
+                SettingsEnum::DEFAULT_EMAIL_EXPORT_TEMPLATE,
+            ],
+            module: 'Admin'
+        );
+
+        $templateIds = [];
+        foreach ($exportTemplates as $template) {
+            $templateIds[] = (int) $template->content;
         }
+
+        $mediaTemplates = MediaMapper::getAll()
+            ->where('id', $templateIds, 'in')
+            ->execute();
+
+        $tableView         = new TableView($this->app->l11nManager, $request, $response);
+        $tableView->module = 'Auditor';
+        $tableView->theme  = 'Backend';
+        $tableView->setExportTemplate('/Web/Backend/Themes/popup-export-data');
+        $tableView->setExportTemplates($mediaTemplates);
+        $tableView->setColumnHeaderElementTemplate('/Web/Backend/Themes/header-element-table');
+        $tableView->setFilterTemplate('/Web/Backend/Themes/popup-filter-table');
+        $tableView->setSortTemplate('/Web/Backend/Themes/sort-table');
+        $tableView->exportUri = '{/api}auditor/list/export';
+
+        $view->addData('tableView', $tableView);
 
         return $view;
     }

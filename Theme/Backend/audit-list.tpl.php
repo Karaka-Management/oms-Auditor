@@ -20,8 +20,19 @@ use phpOMS\Uri\UriFactory;
  */
 $audits = $this->getData('audits') ?? [];
 
-$previous = empty($audits) ? '{/prefix}admin/audit/list' : '{/prefix}admin/audit/list?{?}&id=' . \reset($audits)->getId() . '&ptype=p';
-$next     = empty($audits) ? '{/prefix}admin/audit/list' : '{/prefix}admin/audit/list?{?}&id=' . \end($audits)->getId() . '&ptype=n';
+$previous = empty($audits) || !$this->getData('hasPrevious')
+    ? '{/prefix}admin/audit/list'
+    : '{/prefix}admin/audit/list?{?}&id='
+        . \reset($audits)->getId()
+        . '&ptype=p';
+$next     = empty($audits)
+    ? '{/prefix}admin/audit/list'
+    : '{/prefix}admin/audit/list?{?}&id='
+        . ($this->getData('hasNext') ? \end($audits)->getId() : $this->request->getData('id'))
+        . '&ptype=n';
+
+$tableView = $this->getData('tableView');
+$tableView->id = 'auditList';
 
 echo $this->getData('nav')->render(); ?>
 
@@ -34,108 +45,49 @@ echo $this->getData('nav')->render(); ?>
                     <?= $this->getHtml('Audits'); ?>
                     <a href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right btn"></i></a>
                 </span>
-
-                <i class="fa fa-download floatRight download btn"></i></div>
+                <?= $tableView->renderExport(); ?>
+            </div>
             <div class="slider">
-            <table id="auditList" class="default sticky">
+            <table id="<?= $tableView->id; ?>" class="default sticky">
                 <thead>
                 <tr>
-                    <td><?= $this->getHtml('ID', '0', '0'); ?>
-                        <label for="auditList-sort-1">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-1">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-2">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-2">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('Module'); ?>
-                        <label for="auditList-sort-3">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-3">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-4">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-4">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('Action'); ?>
-                        <label for="auditList-sort-5">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-5">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-6">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-6">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('Type'); ?>
-                        <label for="auditList-sort-7">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-7">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-8">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-8">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td class="wf-100"><?= $this->getHtml('Trigger'); ?>
-                        <label for="auditList-sort-9">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-9">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-10">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-10">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('By'); ?>
-                        <label for="auditList-sort-13">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-13">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-14">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-14">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('Ref'); ?>
-                        <label for="auditList-sort-15">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-15">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-16">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-16">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
-                    <td><?= $this->getHtml('Date'); ?>
-                        <label for="auditList-sort-17">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-17">
-                            <i class="sort-asc fa fa-chevron-up"></i>
-                        </label>
-                        <label for="auditList-sort-18">
-                            <input type="radio" name="auditList-sort" id="auditList-sort-18">
-                            <i class="sort-desc fa fa-chevron-down"></i>
-                        </label>
-                        <label>
-                            <i class="filter fa fa-filter"></i>
-                        </label>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('ID', '0', '0'),
+                        'number'
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Module'),
+                        'text'
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Action'),
+                        'select',
+                        [
+                            'create' => $this->getHtml('CREATE'),
+                            'modify' => $this->getHtml('UPDATE'),
+                            'delete' => $this->getHtml('DELETE'),
+                        ]
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Type'),
+                        'number'
+                    ); ?>
+                    <td class="wf-100"><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Trigger'),
+                        'text'
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('By'),
+                        'text'
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Ref'),
+                        'text'
+                    ); ?>
+                    <td><?= $tableView->renderHeaderElement(
+                        $this->getHtml('Date'),
+                        'date'
+                    ); ?>
                 <tbody>
                 <?php $count = 0;
                 foreach ($audits as $key => $audit) : ++$count;
@@ -162,8 +114,8 @@ echo $this->getData('nav')->render(); ?>
             </table>
             </div>
             <div class="portlet-foot">
-                <a tabindex="0" class="button" href="<?= UriFactory::build($previous); ?>"><?= $this->getHtml('Previous', '0', '0'); ?></a>
-                <a tabindex="0" class="button" href="<?= UriFactory::build($next); ?>"><?= $this->getHtml('Next', '0', '0'); ?></a>
+                <a tabindex="0" class="button" href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left"></i></a>
+                <a tabindex="0" class="button" href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right"></i></a>
             </div>
         </div>
     </div>
