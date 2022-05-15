@@ -18,10 +18,11 @@ use Modules\Admin\Models\SettingsEnum;
 use Modules\Auditor\Models\AuditMapper;
 use Modules\Media\Models\MediaMapper;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
-use View\TableView;
+use Web\Backend\Views\TableView;
 
 /**
  * Calendar controller class.
@@ -56,11 +57,16 @@ final class BackendController extends Controller
         $view->addData('pageLimit', $pageLimit);
 
         $mapper = AuditMapper::getAll()->with('createdBy');
-        $list   = AuditMapper::getAuditList(
-            $mapper,
-            (int) ($request->getData('id') ?? 0),
-            $request->getData('pType'),
-            25
+        $list   = AuditMapper::getDataList(
+            mapper: $mapper,
+            id: (int) ($request->getData('id') ?? 0),
+            secondaryId: (string) ($request->getData('subid') ?? ''),
+            type: $request->getData('pType'),
+            pageLimit: empty((int) ($request->getData('limit') ?? 0)) ? 100 : ((int) $request->getData('limit')),
+            sortBy: $request->getData('sort_by') ?? '',
+            sortOrder: $request->getData('sort_order') ?? OrderType::DESC,
+            search: $request->getData('search'),
+            searchFields: $request->getDataList('search_fields')
         );
 
         $view->setData('hasPrevious', $list['hasPrevious']);
@@ -91,6 +97,7 @@ final class BackendController extends Controller
         $tableView         = new TableView($this->app->l11nManager, $request, $response);
         $tableView->module = 'Auditor';
         $tableView->theme  = 'Backend';
+        $tableView->setTitleTemplate('/Web/Backend/Themes/table-title');
         $tableView->setExportTemplate('/Web/Backend/Themes/popup-export-data');
         $tableView->setExportTemplates($mediaTemplates);
         $tableView->setColumnHeaderElementTemplate('/Web/Backend/Themes/header-element-table');

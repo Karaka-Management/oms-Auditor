@@ -20,19 +20,26 @@ use phpOMS\Uri\UriFactory;
  */
 $audits = $this->getData('audits') ?? [];
 
-$previous = empty($audits) || !$this->getData('hasPrevious')
-    ? '{/prefix}admin/audit/list'
-    : '{/prefix}admin/audit/list?{?}&id='
-        . \reset($audits)->getId()
-        . '&ptype=p';
-$next     = empty($audits)
-    ? '{/prefix}admin/audit/list'
-    : '{/prefix}admin/audit/list?{?}&id='
-        . ($this->getData('hasNext') ? \end($audits)->getId() : $this->request->getData('id'))
-        . '&ptype=n';
-
 $tableView     = $this->getData('tableView');
 $tableView->id = 'auditList';
+
+$previous = $tableView->getPreviousLink(
+    '{/prefix}admin/audit/list',
+    $this->request,
+    empty($audits) || !$this->getData('hasPrevious') ? null : \reset($audits)
+);
+
+$next = $tableView->getNextLink(
+    '{/prefix}admin/audit/list',
+    $this->request,
+    empty($audits) ? null : \end($audits),
+    $this->getData('hasNext') ?? false
+);
+
+$search = $tableView->getSearchLink(
+    '{/prefix}admin/audit/list',
+    'iSearchBoxTable'
+);
 
 echo $this->getData('nav')->render(); ?>
 
@@ -41,9 +48,16 @@ echo $this->getData('nav')->render(); ?>
         <div class="portlet">
             <div class="portlet-head">
                 <span>
-                    <a href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left btn"></i></a>
+                    <a rel="prefetch" href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left btn"></i></a>
                     <?= $this->getHtml('Audits'); ?>
-                    <a href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right btn"></i></a>
+                    <a rel="prefetch" href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right btn"></i></a>
+                    <span role="search" class="inputWrapper">
+                        <span class="textWrapper">
+                            <input id="iSearchBoxTable" name="search" type="text" autocomplete="off" value="<?= $this->request->getData('search') ?? ''; ?>" autofocus>
+                            <i class="endIcon fa fa-times fa-lg fa-fw" aria-hidden="true"></i>
+                        </span>
+                        <a class="button" href="<?= UriFactory::build($search); ?>&search={#iSearchBoxTable}"><i class="frontIcon fa fa-search fa-fw" aria-hidden="true"></i></a>
+                    </span>
                 </span>
                 <?= $tableView->renderExport(); ?>
             </div>
@@ -52,39 +66,48 @@ echo $this->getData('nav')->render(); ?>
                 <thead>
                 <tr>
                     <td><?= $tableView->renderHeaderElement(
+                        'id',
                         $this->getHtml('ID', '0', '0'),
                         'number'
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'module',
                         $this->getHtml('Module'),
                         'text'
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'action',
                         $this->getHtml('Action'),
                         'select',
                         [
                             'create' => $this->getHtml('CREATE'),
                             'modify' => $this->getHtml('UPDATE'),
                             'delete' => $this->getHtml('DELETE'),
-                        ]
+                        ],
+                        false // don't render sort
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'type',
                         $this->getHtml('Type'),
                         'number'
                     ); ?>
                     <td class="wf-100"><?= $tableView->renderHeaderElement(
+                        'trigger',
                         $this->getHtml('Trigger'),
                         'text'
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'createdBy',
                         $this->getHtml('By'),
                         'text'
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'ref',
                         $this->getHtml('Ref'),
                         'text'
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
+                        'createdAt',
                         $this->getHtml('Date'),
                         'date'
                     ); ?>

@@ -41,7 +41,7 @@ class Audit
      * @var int
      * @since 1.0.0
      */
-    private int $type;
+    public int $type;
 
     /**
      * Audit trigger.
@@ -49,7 +49,7 @@ class Audit
      * @var string
      * @since 1.0.0
      */
-    private string $trigger;
+    public string $trigger;
 
     /**
      * Audit module.
@@ -57,7 +57,7 @@ class Audit
      * @var null|string
      * @since 1.0.0
      */
-    private ?string $module;
+    public ?string $module;
 
     /**
      * Audit reference.
@@ -67,7 +67,7 @@ class Audit
      * @var null|string
      * @since 1.0.0
      */
-    private ?string $ref;
+    public ?string $ref;
 
     /**
      * Audit content.
@@ -77,7 +77,7 @@ class Audit
      * @var null|string
      * @since 1.0.0
      */
-    private ?string $content;
+    public ?string $content;
 
     /**
      * Old value.
@@ -85,7 +85,7 @@ class Audit
      * @var null|string
      * @since 1.0.0
      */
-    private ?string $old;
+    public ?string $old;
 
     /**
      * New value.
@@ -93,7 +93,7 @@ class Audit
      * @var null|string
      * @since 1.0.0
      */
-    private ?string $new;
+    public ?string $new;
 
     /**
      * Account.
