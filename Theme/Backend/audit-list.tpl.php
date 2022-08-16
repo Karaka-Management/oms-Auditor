@@ -20,25 +20,21 @@ use phpOMS\Uri\UriFactory;
  */
 $audits = $this->getData('audits') ?? [];
 
-$tableView     = $this->getData('tableView');
-$tableView->id = 'auditList';
+$tableView            = $this->getData('tableView');
+$tableView->id        = 'auditList';
+$tableView->baseUri   = '{/prefix}admin/audit/list';
+$tableView->exportUri = '{/api}auditor/list/export';
+$tableView->setObjects($audits);
 
 $previous = $tableView->getPreviousLink(
-    '{/prefix}admin/audit/list',
     $this->request,
-    empty($audits) || !$this->getData('hasPrevious') ? null : \reset($audits)
+    empty($this->objects) || !$this->getData('hasPrevious') ? null : \reset($this->objects)
 );
 
 $next = $tableView->getNextLink(
-    '{/prefix}admin/audit/list',
     $this->request,
-    empty($audits) ? null : \end($audits),
+    empty($this->objects) ? null : \end($this->objects),
     $this->getData('hasNext') ?? false
-);
-
-$search = $tableView->getSearchLink(
-    '{/prefix}admin/audit/list',
-    'iSearchBoxTable'
 );
 
 echo $this->getData('nav')->render(); ?>
@@ -47,19 +43,9 @@ echo $this->getData('nav')->render(); ?>
     <div class="col-xs-12">
         <div class="portlet">
             <div class="portlet-head">
-                <span>
-                    <a rel="prefetch" href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left btn"></i></a>
-                    <?= $this->getHtml('Audits'); ?>
-                    <a rel="prefetch" href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right btn"></i></a>
-                    <span role="search" class="inputWrapper">
-                        <span class="textWrapper">
-                            <input id="iSearchBoxTable" name="search" type="text" autocomplete="off" value="<?= $this->request->getData('search') ?? ''; ?>" autofocus>
-                            <i class="endIcon fa fa-times fa-lg fa-fw" aria-hidden="true"></i>
-                        </span>
-                        <a class="button" href="<?= UriFactory::build($search); ?>&search={#iSearchBoxTable}"><i class="frontIcon fa fa-search fa-fw" aria-hidden="true"></i></a>
-                    </span>
-                </span>
-                <?= $tableView->renderExport(); ?>
+                <?= $tableView->renderTitle(
+                    $this->getHtml('Audits')
+                ); ?>
             </div>
             <div class="slider">
             <table id="<?= $tableView->id; ?>" class="default sticky">
@@ -104,7 +90,11 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $tableView->renderHeaderElement(
                         'ref',
                         $this->getHtml('Ref'),
-                        'text'
+                        'text',
+                        [],
+                        true,
+                        true,
+                        false
                     ); ?>
                     <td><?= $tableView->renderHeaderElement(
                         'createdAt',
@@ -114,7 +104,7 @@ echo $this->getData('nav')->render(); ?>
                 <tbody>
                 <?php $count = 0;
                 foreach ($audits as $key => $audit) : ++$count;
-                    $url = UriFactory::build('{/prefix}admin/audit/single?{?}&id=' . $audit->getId()); ?>
+                    $url = UriFactory::build('{/prefix}admin/audit/single?id=' . $audit->getId()); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
@@ -136,10 +126,16 @@ echo $this->getData('nav')->render(); ?>
                 <?php endif; ?>
             </table>
             </div>
+            <?php if ($this->getData('hasPrevious') || $this->getData('hasNext')) : ?>
             <div class="portlet-foot">
+                <?php if ($this->getData('hasPrevious')) : ?>
                 <a tabindex="0" class="button" href="<?= UriFactory::build($previous); ?>"><i class="fa fa-chevron-left"></i></a>
+                <?php endif; ?>
+                <?php if ($this->getData('hasNext')) : ?>
                 <a tabindex="0" class="button" href="<?= UriFactory::build($next); ?>"><i class="fa fa-chevron-right"></i></a>
+                <?php endif; ?>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

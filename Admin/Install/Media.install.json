@@ -10,8 +10,8 @@
         "type": "upload",
         "create_collection": true,
         "name": "Default",
-        "virtualPath": "/Modules/Auditor",
-        "path": "/Modules/Auditor",
+        "virtualPath": "/Modules/Auditor/Default",
+        "path": "/Modules/Auditor/Default",
         "files": [
             "/Modules/Auditor/Admin/Install/Media/defaultReport.pdf.php"
         ],

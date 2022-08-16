@@ -53,11 +53,42 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
+        $searchFieldData = $request->getLike('.*\-p\-.*');
+        $searchField     = [];
+        foreach ($searchFieldData as $key => $data) {
+            if ($data === '1') {
+                $split  = \explode('-', $key);
+                $member =  \end($split);
+
+                $searchField[] = $member;
+            }
+        }
+
+        $filterFieldData = $request->getLike('.*\-f\-.*?\-t');
+        $filterField     = [];
+        foreach ($filterFieldData as $key => $type) {
+            $split = \explode('-', $key);
+            \end($split);
+
+            $member = \prev($split);
+
+            if (!empty($request->getData('auditlist-f-' . $member . '-f1'))) {
+                $filterField[$member] = [
+                    'type' => $type,
+                    'value1' => $request->getData('auditlist-f-' . $member . '-f1'),
+                    'logic1' => $request->getData('auditlist-f-' . $member . '-o1'),
+                    'value2' => $request->getData('auditlist-f-' . $member . '-f2'),
+                    'logic2' => $request->getData('auditlist-f-' . $member . '-o2'),
+                ];
+            }
+        }
+
         $pageLimit = 25;
         $view->addData('pageLimit', $pageLimit);
 
         $mapper = AuditMapper::getAll()->with('createdBy');
-        $list   = AuditMapper::getDataList(
+        $list   = AuditMapper::find(
+            search: $request->getData('search'),
             mapper: $mapper,
             id: (int) ($request->getData('id') ?? 0),
             secondaryId: (string) ($request->getData('subid') ?? ''),
@@ -65,12 +96,10 @@ final class BackendController extends Controller
             pageLimit: empty((int) ($request->getData('limit') ?? 0)) ? 100 : ((int) $request->getData('limit')),
             sortBy: $request->getData('sort_by') ?? '',
             sortOrder: $request->getData('sort_order') ?? OrderType::DESC,
-            search: $request->getData('search'),
-            searchFields: $request->getDataList('search_fields')
+            searchFields: $searchField,
+            filters: $filterField
         );
 
-        $view->setData('hasPrevious', $list['hasPrevious']);
-        $view->setData('hasNext', $list['hasNext']);
         $view->setData('audits', $list['data']);
 
         /** @var \Model\Setting[] $exportTemplates */
@@ -103,7 +132,8 @@ final class BackendController extends Controller
         $tableView->setColumnHeaderElementTemplate('/Web/Backend/Themes/header-element-table');
         $tableView->setFilterTemplate('/Web/Backend/Themes/popup-filter-table');
         $tableView->setSortTemplate('/Web/Backend/Themes/sort-table');
-        $tableView->exportUri = '{/api}auditor/list/export';
+        $tableView->setData('hasPrevious', $list['hasPrevious']);
+        $tableView->setData('hasNext', $list['hasNext']);
 
         $view->addData('tableView', $tableView);
 
