@@ -74,7 +74,7 @@ final class BackendController extends Controller
 
             if (!empty($request->getData('auditlist-f-' . $member . '-f1'))) {
                 $filterField[$member] = [
-                    'type' => $type,
+                    'type'   => $type,
                     'value1' => $request->getData('auditlist-f-' . $member . '-f1'),
                     'logic1' => $request->getData('auditlist-f-' . $member . '-o1'),
                     'value2' => $request->getData('auditlist-f-' . $member . '-f2'),
