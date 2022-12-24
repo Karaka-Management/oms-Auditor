@@ -43,39 +43,39 @@ echo $this->getData('nav')->render();
                 <table class="list">
                     <tr>
                         <th><?= $this->getHtml('Action'); ?>
-                        <td><?php if ($audit->getOld() === null) : echo $this->getHtml('CREATE'); ?>
-                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo $this->getHtml('UPDATE'); ?>
-                            <?php elseif ($audit->getNew() === null) : echo $this->getHtml('DELETE'); ?>
+                        <td><?php if ($audit->old === null) : echo $this->getHtml('CREATE'); ?>
+                            <?php elseif ($audit->old !== null && $audit->new !== null) : echo $this->getHtml('UPDATE'); ?>
+                            <?php elseif ($audit->new === null) : echo $this->getHtml('DELETE'); ?>
                             <?php else : echo $this->getHtml('UNKNOWN'); ?>
                             <?php endif; ?>
                     <tr>
                         <th><?= $this->getHtml('Type'); ?>
-                        <td><?= $audit->getType(); ?>
+                        <td><?= $audit->type; ?>
                     <tr>
                         <th><?= $this->getHtml('By'); ?>
                         <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
                     <tr>
                         <th><?= $this->getHtml('Ref'); ?>
-                        <td><?= $this->printHtml($audit->getRef()); ?>
+                        <td><?= $this->printHtml($audit->ref); ?>
                     <tr>
                         <th><?= $this->getHtml('Date'); ?>
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
                     <tr>
                         <th><?= $this->getHtml('Module'); ?>
-                        <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/module/settings?{?}&id=' . $audit->getModule()); ?>"><?= $audit->getModule(); ?></a>
+                        <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/module/settings?{?}&id=' . $audit->module); ?>"><?= $audit->module; ?></a>
                     <tr>
                         <th><?= $this->getHtml('IP'); ?>
-                        <td><?= \long2ip($audit->getIp()); ?>
+                        <td><?= \long2ip($audit->ip); ?>
                 </table>
                 <article>
                     <pre><?= \phpOMS\Utils\StringUtils::createDiffMarkup(
-                            ViewAbstract::html(\stripos($audit->getOld() ?? '', '{') === 0
-                                ? \json_encode(\json_decode($audit->getOld()), \JSON_PRETTY_PRINT)
-                                : $audit->getOld() ?? ''
+                            ViewAbstract::html(\stripos($audit->old ?? '', '{') === 0
+                                ? \json_encode(\json_decode($audit->old), \JSON_PRETTY_PRINT)
+                                : $audit->old ?? ''
                             ),
-                            ViewAbstract::html(\stripos($audit->getNew() ?? '', '{') === 0
-                                ? \json_encode(\json_decode($audit->getNew()), \JSON_PRETTY_PRINT)
-                                : $audit->getNew() ?? ''
+                            ViewAbstract::html(\stripos($audit->new ?? '', '{') === 0
+                                ? \json_encode(\json_decode($audit->new), \JSON_PRETTY_PRINT)
+                                : $audit->new ?? ''
                             ),
                             "\n"
                         ); ?>

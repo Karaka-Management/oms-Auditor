@@ -14,9 +14,48 @@ declare(strict_types=1);
 
 namespace Modules\Auditor\tests\Models;
 
+use Modules\Admin\Models\NullAccount;
+use Modules\Auditor\Models\Audit;
+use Modules\Auditor\Models\AuditMapper;
+
 /**
  * @internal
  */
 final class AuditMapperTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @covers Modules\Auditor\Models\AuditMapper
+     * @group module
+     */
+    public function testCR() : void
+    {
+        $audit = new Audit(
+            new NullAccount(1),
+            'old',
+            'new',
+            1,
+            'test-trigger',
+            'Admin',
+            'test-ref',
+            'test-content',
+            10000
+        );
+
+        $id = AuditMapper::create()->execute($audit);
+        self::assertGreaterThan(0, $audit->getId());
+        self::assertEquals($id, $audit->getId());
+
+        $auditR = AuditMapper::get()
+            ->where('id', $audit->getId())
+            ->execute();
+
+        self::assertEquals($audit->type, $auditR->type);
+        self::assertEquals($audit->trigger, $auditR->trigger);
+        self::assertEquals($audit->module, $auditR->module);
+        self::assertEquals($audit->ref, $auditR->ref);
+        self::assertEquals($audit->content, $auditR->content);
+        self::assertEquals($audit->old, $auditR->old);
+        self::assertEquals($audit->new, $auditR->new);
+        self::assertEquals($audit->ip, $auditR->ip);
+    }
 }

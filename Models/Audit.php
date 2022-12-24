@@ -117,7 +117,7 @@ class Audit
      * @var int
      * @since 1.0.0
      */
-    private int $ip = 0;
+    public int $ip = 0;
 
     /**
      * Constructor.
@@ -167,103 +167,5 @@ class Audit
     public function getId() : int
     {
         return $this->id;
-    }
-
-    /**
-     * Get type.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getType() : int
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get subtype.
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getTrigger() : string
-    {
-        return $this->trigger;
-    }
-
-    /**
-     * Get Module.
-     *
-     * @return null|string
-     *
-     * @since 1.0.0
-     */
-    public function getModule() : ?string
-    {
-        return $this->module;
-    }
-
-    /**
-     * Get reference.
-     *
-     * If existing this can be a reference to another model
-     *
-     * @return null|string
-     *
-     * @since 1.0.0
-     */
-    public function getRef() : ?string
-    {
-        return $this->ref;
-    }
-
-    /**
-     * Get content.
-     *
-     * @return null|string
-     *
-     * @since 1.0.0
-     */
-    public function getContent() : ?string
-    {
-        return $this->content;
-    }
-
-    /**
-     * Get old value.
-     *
-     * @return null|string
-     *
-     * @since 1.0.0
-     */
-    public function getOld() : ?string
-    {
-        return $this->old;
-    }
-
-    /**
-     * Get new value.
-     *
-     * @return null|string
-     *
-     * @since 1.0.0
-     */
-    public function getNew() : ?string
-    {
-        return $this->new;
-    }
-
-    /**
-     * Get ip.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getIp() : int
-    {
-        return $this->ip;
     }
 }

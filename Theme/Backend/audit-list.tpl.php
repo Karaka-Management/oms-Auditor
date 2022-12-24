@@ -108,17 +108,17 @@ echo $this->getData('nav')->render(); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
-                        <td><?php if ($audit->getOld() === null) : echo $this->getHtml('CREATE'); ?>
-                            <?php elseif ($audit->getOld() !== null && $audit->getNew() !== null) : echo $this->getHtml('UPDATE'); ?>
-                            <?php elseif ($audit->getNew() === null) : echo $this->getHtml('DELETE'); ?>
+                        <td><?php if ($audit->old === null) : echo $this->getHtml('CREATE'); ?>
+                            <?php elseif ($audit->old !== null && $audit->new !== null) : echo $this->getHtml('UPDATE'); ?>
+                            <?php elseif ($audit->new=== null) : echo $this->getHtml('DELETE'); ?>
                             <?php else : echo $this->getHtml('UNKNOWN'); ?>
                             <?php endif; ?>
-                        <td><?= $audit->getType(); ?>
-                        <td><?= $audit->getTrigger(); ?>
+                        <td><?= $this->printHtml($audit->type); ?>
+                        <td><?= $this->printHtml($audit->trigger); ?>
                         <td><a class="content" href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
                                 $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
                             ); ?></a>
-                        <td><?= $this->printHtml($audit->getRef()); ?>
+                        <td><?= $this->printHtml($audit->ref); ?>
                         <td><?= $audit->createdAt->format('Y-m-d H:i:s'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>

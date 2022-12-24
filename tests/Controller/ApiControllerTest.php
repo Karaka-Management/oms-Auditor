@@ -97,13 +97,13 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         foreach($logs as $log) {
             if ($log->getId() > 0
-                && $log->getType() === 1
-                && $log->getTrigger() === 'test-trigger'
-                && $log->getModule() === 'Auditor'
-                && $log->getRef() === 'abc'
-                && $log->getContent() === 'def'
-                && $log->getOld() === null
-                && $log->getNew() === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
+                && $log->type === 1
+                && $log->trigger === 'test-trigger'
+                && $log->module === 'Auditor'
+                && $log->ref === 'abc'
+                && $log->content === 'def'
+                && $log->old === null
+                && $log->new === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
             ) {
                 self::assertTrue(true);
                 return;
@@ -126,13 +126,13 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $found = false;
         foreach($logs as $log) {
             if ($log->getId() > 0
-                && $log->getType() === 1
-                && $log->getTrigger() === 'test-trigger'
-                && $log->getModule() === 'Auditor'
-                && $log->getRef() === 'abc'
-                && $log->getContent() === 'def'
-                && $log->getOld() === \json_encode(['id' => 2, 'test' => true], \JSON_PRETTY_PRINT)
-                && $log->getNew() === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
+                && $log->type === 1
+                && $log->trigger === 'test-trigger'
+                && $log->module === 'Auditor'
+                && $log->ref === 'abc'
+                && $log->content === 'def'
+                && $log->old === \json_encode(['id' => 2, 'test' => true], \JSON_PRETTY_PRINT)
+                && $log->new === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
             ) {
                 $found = true;
                 break;
@@ -168,13 +168,13 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         foreach($logs as $log) {
             if ($log->getId() > 0
-                && $log->getType() === 1
-                && $log->getTrigger() === 'test-trigger'
-                && $log->getModule() === 'Auditor'
-                && $log->getRef() === 'abc'
-                && $log->getContent() === 'def'
-                && $log->getOld() === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
-                && $log->getNew() === null
+                && $log->type === 1
+                && $log->trigger === 'test-trigger'
+                && $log->module === 'Auditor'
+                && $log->ref === 'abc'
+                && $log->content === 'def'
+                && $log->old === \json_encode(['id' => 1, 'test' => true], \JSON_PRETTY_PRINT)
+                && $log->new === null
             ) {
                 self::assertTrue(true);
                 return;
