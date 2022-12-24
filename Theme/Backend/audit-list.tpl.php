@@ -110,7 +110,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><?= $this->printHtml($audit->getModule()); ?>
                         <td><?php if ($audit->old === null) : echo $this->getHtml('CREATE'); ?>
                             <?php elseif ($audit->old !== null && $audit->new !== null) : echo $this->getHtml('UPDATE'); ?>
-                            <?php elseif ($audit->new=== null) : echo $this->getHtml('DELETE'); ?>
+                            <?php elseif ($audit->new === null) : echo $this->getHtml('DELETE'); ?>
                             <?php else : echo $this->getHtml('UNKNOWN'); ?>
                             <?php endif; ?>
                         <td><?= $this->printHtml($audit->type); ?>
