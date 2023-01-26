@@ -120,6 +120,14 @@ class Audit
     public int $ip = 0;
 
     /**
+     * Blockchain.
+     *
+     * @var null|string
+     * @since 1.0.0
+     */
+    public ?string $blockchain = null;
+
+    /**
      * Constructor.
      *
      * @param Account     $account Account of the creator

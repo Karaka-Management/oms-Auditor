@@ -104,13 +104,7 @@ final class BackendController extends Controller
 
         /** @var \Model\Setting[] $exportTemplates */
         $exportTemplates = $this->app->appSettings->get(
-            names: [
-                SettingsEnum::DEFAULT_PDF_EXPORT_TEMPLATE,
-                SettingsEnum::DEFAULT_EXCEL_EXPORT_TEMPLATE,
-                SettingsEnum::DEFAULT_CSV_EXPORT_TEMPLATE,
-                SettingsEnum::DEFAULT_WORD_EXPORT_TEMPLATE,
-                SettingsEnum::DEFAULT_EMAIL_EXPORT_TEMPLATE,
-            ],
+            names: [SettingsEnum::DEFAULT_LIST_EXPORTS],
             module: 'Admin'
         );
 

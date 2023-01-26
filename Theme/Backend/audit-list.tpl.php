@@ -15,14 +15,14 @@ declare(strict_types=1);
 use phpOMS\Uri\UriFactory;
 
 /**
- * @var \phpOMS\Views\View            $this
+ * @var \Web\Backend\Views\TableView  $this
  * @var \Modules\Audit\Models\Audit[] $audits
  */
 $audits = $this->getData('audits') ?? [];
 
 $tableView            = $this->getData('tableView');
 $tableView->id        = 'auditList';
-$tableView->baseUri   = 'admin/audit/list';
+$tableView->baseUri   = '{/lang}/{/app}/admin/audit/list';
 $tableView->exportUri = '{/api}auditor/list/export';
 $tableView->setObjects($audits);
 

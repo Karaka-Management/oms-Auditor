@@ -45,6 +45,7 @@ final class AuditMapper extends DataMapperFactory
         'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'string',            'internal' => 'content'],
         'auditor_audit_old'        => ['name' => 'auditor_audit_old',        'type' => 'compress',          'internal' => 'old'],
         'auditor_audit_new'        => ['name' => 'auditor_audit_new',        'type' => 'compress',          'internal' => 'new'],
+        'auditor_audit_blockchain'        => ['name' => 'auditor_audit_blockchain',        'type' => 'string',          'internal' => 'blockchain', 'readonly' => true],
     ];
 
     /**
