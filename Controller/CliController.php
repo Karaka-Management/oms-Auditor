@@ -4,7 +4,7 @@
  *
  * PHP Version 8.1
  *
- * @package   Modules\Admin
+ * @package   Modules\Auditor
  * @copyright Dennis Eichhorn
  * @license   OMS License 1.0
  * @version   1.0.0
@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\Admin\Controller;
+namespace Modules\Auditor\Controller;
 
 use Modules\Auditor\Models\AuditMapper;
 use Modules\Auditor\Models\NullAudit;
@@ -23,11 +23,11 @@ use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
 
 /**
- * Admin controller class.
+ * Auditor controller class.
  *
  * This class is responsible for the basic admin activities such as managing accounts, groups, permissions and modules.
  *
- * @package Modules\Admin
+ * @package Modules\Auditor
  * @license OMS License 1.0
  * @link    https://jingga.app
  * @since   1.0.0
@@ -54,6 +54,7 @@ final class CliController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Auditor/Theme/Cli/blockchain');
 
+        /** @var \Modules\Auditor\Models\Audit $first */
         $first = AuditMapper::get()
             ->where('blockchain', null)
             ->sort('id', OrderType::ASC)
@@ -61,6 +62,7 @@ final class CliController extends Controller
             ->execute();
 
         if ($first->getId() === 1) {
+            /** @var \Modules\Auditor\Models\Audit $first */
             $first = AuditMapper::get()
                 ->where('id', $first->getId() + 1)
                 ->execute();
@@ -68,19 +70,22 @@ final class CliController extends Controller
 
         $count = 0;
         if (!($first instanceof NullAudit)) {
+            /** @var \Modules\Auditor\Models\Audit $last */
             $last = AuditMapper::get()
                 ->sort('id', OrderType::DESC)
                 ->limit(1)
                 ->execute();
 
+            /** @var \Modules\Auditor\Models\Audit $previous */
             $previous = AuditMapper::get()
                 ->where('id', $first->getId() - 1)
                 ->execute();
 
-            $current = $first;
+            $current        = $first;
             $endLastBatchId = $first->getId() - 1;
 
             while ($current->getId() !== 0 && $current->getId() <= $last->getId()) {
+                /** @var \Modules\Auditor\Models\Audit[] $batch */
                 $batch = AuditMapper::getAll()
                     ->where('id', $endLastBatchId, '>')
                     ->sort('id', OrderType::ASC)

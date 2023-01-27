@@ -49,6 +49,12 @@
                 "default": null,
                 "null": true
             },
+            "auditor_audit_blockchain": {
+                "name": "auditor_audit_blockchain",
+                "type": "VARCHAR(129)",
+                "default": null,
+                "null": true
+            },
             "auditor_audit_created_at": {
                 "name": "auditor_audit_created_at",
                 "type": "DATETIME",
