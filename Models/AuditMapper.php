@@ -42,7 +42,7 @@ final class AuditMapper extends DataMapperFactory
         'auditor_audit_ref'        => ['name' => 'auditor_audit_ref',        'type' => 'string',            'internal' => 'ref'],
         'auditor_audit_type'       => ['name' => 'auditor_audit_type',       'type' => 'int',               'internal' => 'type'],
         'auditor_audit_trigger'    => ['name' => 'auditor_audit_trigger',    'type' => 'string',            'internal' => 'trigger'],
-        'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'string',            'internal' => 'content'],
+        'auditor_audit_content'    => ['name' => 'auditor_audit_content',    'type' => 'compress',          'internal' => 'content'],
         'auditor_audit_old'        => ['name' => 'auditor_audit_old',        'type' => 'compress',          'internal' => 'old'],
         'auditor_audit_new'        => ['name' => 'auditor_audit_new',        'type' => 'compress',          'internal' => 'new'],
         'auditor_audit_blockchain'        => ['name' => 'auditor_audit_blockchain',        'type' => 'string',          'internal' => 'blockchain', 'readonly' => true],
@@ -83,7 +83,7 @@ final class AuditMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='auditor_audit_id';
+    public const PRIMARYFIELD = 'auditor_audit_id';
 
     /**
      * Created at.

@@ -56,7 +56,7 @@ echo $this->getData('nav')->render();
                         <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
                     <tr>
                         <th><?= $this->getHtml('Ref'); ?>
-                        <td><?= $this->printHtml($audit->ref); ?>
+                        <td><?= $this->printHtml((string) $audit->ref); ?>
                     <tr>
                         <th><?= $this->getHtml('Date'); ?>
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>

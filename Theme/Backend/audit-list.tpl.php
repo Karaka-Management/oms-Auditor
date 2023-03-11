@@ -80,7 +80,7 @@ echo $this->getData('nav')->render(); ?>
                         <td><a class="content" href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
                                 $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
                             ); ?></a>
-                        <td><?= $this->printHtml($audit->ref); ?>
+                        <td><?= $this->printHtml((string) $audit->ref); ?>
                         <td><?= $audit->createdAt->format('Y-m-d H:i:s'); ?>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
