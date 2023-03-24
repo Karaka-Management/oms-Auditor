@@ -6,7 +6,7 @@
  *
  * @package   Modules\Auditor
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -53,7 +53,7 @@ echo $this->getData('nav')->render();
                         <td><?= $audit->type; ?>
                     <tr>
                         <th><?= $this->getHtml('By'); ?>
-                        <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
                     <tr>
                         <th><?= $this->getHtml('Ref'); ?>
                         <td><?= $this->printHtml((string) $audit->ref); ?>
@@ -62,7 +62,7 @@ echo $this->getData('nav')->render();
                         <td><?= $this->getDateTime($audit->createdAt, 'very_long'); ?>
                     <tr>
                         <th><?= $this->getHtml('Module'); ?>
-                        <td><a href="<?= UriFactory::build('{/lang}/{/app}/admin/module/settings?{?}&id=' . $audit->module); ?>"><?= $audit->module; ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/admin/module/settings?{?}&id=' . $audit->module); ?>"><?= $audit->module; ?></a>
                     <tr>
                         <th><?= $this->getHtml('IP'); ?>
                         <td><?= \long2ip($audit->ip); ?>

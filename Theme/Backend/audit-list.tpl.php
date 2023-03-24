@@ -6,7 +6,7 @@
  *
  * @package   Modules\Auditor
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -22,7 +22,7 @@ $audits = $this->getData('audits') ?? [];
 
 $tableView            = $this->getData('tableView');
 $tableView->id        = 'auditList';
-$tableView->baseUri   = '{/lang}/{/app}/admin/audit/list';
+$tableView->baseUri   = '{/base}/admin/audit/list';
 $tableView->exportUri = '{/api}auditor/list/export';
 $tableView->setObjects($audits);
 
@@ -66,7 +66,7 @@ echo $this->getData('nav')->render(); ?>
                 <?php
                 $count = 0;
                 foreach ($audits as $key => $audit) : ++$count;
-                    $url = UriFactory::build('{/lang}/{/app}/admin/audit/single?id=' . $audit->getId()); ?>
+                    $url = UriFactory::build('{/base}/admin/audit/single?id=' . $audit->getId()); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
                         <td><?= $audit->getId(); ?>
                         <td><?= $this->printHtml($audit->module); ?>
@@ -77,7 +77,7 @@ echo $this->getData('nav')->render(); ?>
                             <?php endif; ?>
                         <td><?= $this->printHtml((string) $audit->type); ?>
                         <td><?= $this->printHtml($audit->trigger); ?>
-                        <td><a class="content" href="<?= UriFactory::build('{/lang}/{/app}/admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
+                        <td><a class="content" href="<?= UriFactory::build('{/base}/admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
                                 $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
                             ); ?></a>
                         <td><?= $this->printHtml((string) $audit->ref); ?>

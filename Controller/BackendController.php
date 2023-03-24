@@ -6,7 +6,7 @@
  *
  * @package   Modules\Auditor
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -28,7 +28,7 @@ use Web\Backend\Views\TableView;
  * Calendar controller class.
  *
  * @package Modules\Auditor
- * @license OMS License 1.0
+ * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
  * @codeCoverageIgnore
@@ -88,14 +88,14 @@ final class BackendController extends Controller
 
         $mapper = AuditMapper::getAll()->with('createdBy');
         $list   = AuditMapper::find(
-            search: $request->getData('search'),
+            search: $request->getDataString('search'),
             mapper: $mapper,
-            id: (int) ($request->getData('id') ?? 0),
-            secondaryId: (string) ($request->getData('subid') ?? ''),
-            type: $request->getData('pType'),
-            pageLimit: empty((int) ($request->getData('limit') ?? 0)) ? 100 : ((int) $request->getData('limit')),
-            sortBy: $request->getData('sort_by') ?? '',
-            sortOrder: $request->getData('sort_order') ?? OrderType::DESC,
+            id: $request->getDataInt('id') ?? 0,
+            secondaryId: $request->getDataString('subid') ?? '',
+            type: $request->getDataString('pType'),
+            pageLimit: empty($request->getDataInt('limit') ?? 0) ? 100 : $request->getDataInt('limit'),
+            sortBy: $request->getDataString('sort_by') ?? '',
+            sortOrder: $request->getDataString('sort_order') ?? OrderType::DESC,
             searchFields: $searchField,
             filters: $filterField
         );

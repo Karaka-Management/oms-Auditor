@@ -6,7 +6,7 @@
  *
  * @package   Modules\Auditor\Admin\Install
  * @copyright Dennis Eichhorn
- * @license   OMS License 1.0
+ * @license   OMS License 2.0
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -22,7 +22,7 @@ use phpOMS\Application\ApplicationAbstract;
  * Media class.
  *
  * @package Modules\Auditor\Admin\Install
- * @license OMS License 1.0
+ * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
  */
@@ -45,6 +45,8 @@ class Media
         $defaultTemplate = (int) \reset($media['upload'][0]);
 
         $setting = new Setting();
-        SettingMapper::create()->execute($setting->with(0, 'default_pdf_template', (string) $defaultTemplate, '\\d+', 1, 'Auditor'));
+        SettingMapper::create()->execute(
+            $setting->with(0, 'default_pdf_template', (string) $defaultTemplate, '\\d+', unit: 1, module: 'Auditor')
+        );
     }
 }
