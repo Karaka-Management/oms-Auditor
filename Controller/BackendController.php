@@ -87,7 +87,9 @@ final class BackendController extends Controller
         $view->addData('pageLimit', $pageLimit);
 
         $mapper = AuditMapper::getAll()->with('createdBy');
-        $list   = AuditMapper::find(
+
+        /** @var \Modules\Auditor\Models\Audit[] $list */
+        $list = AuditMapper::find(
             search: $request->getDataString('search'),
             mapper: $mapper,
             id: $request->getDataInt('id') ?? 0,
@@ -113,6 +115,7 @@ final class BackendController extends Controller
             $templateIds[] = (int) $template->content;
         }
 
+        /** @var \Modules\Media\Models\Media[] $mediaTemplates */
         $mediaTemplates = MediaMapper::getAll()
             ->where('id', $templateIds, 'in')
             ->execute();
@@ -153,7 +156,11 @@ final class BackendController extends Controller
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
 
         /** @var \Modules\Auditor\Models\Audit $audit */
-        $audit = AuditMapper::get()->with('createdBy')->where('id', (int) $request->getData('id'))->execute();
+        $audit = AuditMapper::get()
+            ->with('createdBy')
+            ->where('id', (int) $request->getData('id'))
+            ->execute();
+
         $view->setData('audit', $audit);
 
         return $view;
