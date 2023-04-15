@@ -16,6 +16,7 @@ namespace Modules\Auditor\Admin\Install;
 
 use Model\Setting;
 use Model\SettingMapper;
+use Modules\Auditor\Models\SettingsEnum;
 use phpOMS\Application\ApplicationAbstract;
 
 /**
@@ -42,11 +43,19 @@ class Media
     {
         $media = \Modules\Media\Admin\Installer::installExternal($app, ['path' => __DIR__ . '/Media.install.json']);
 
-        $defaultTemplate = (int) \reset($media['upload'][0]);
-
-        $setting = new Setting();
-        SettingMapper::create()->execute(
-            $setting->with(0, 'default_pdf_template', (string) $defaultTemplate, '\\d+', unit: 1, module: 'Auditor')
+        \Modules\Admin\Admin\Installer::installExternal(
+            $app,
+            [
+                'data' => [
+                    [
+                        'type' => 'setting',
+                        'name' => SettingsEnum::REPORT_PDF,
+                        'content' => (string) $media['upload'][0]['id'],
+                        'pattern' => '\\d+',
+                        'module' => 'Auditor'
+                    ]
+                ]
+            ]
         );
     }
 }
