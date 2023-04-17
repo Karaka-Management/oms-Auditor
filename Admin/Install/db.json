@@ -33,7 +33,7 @@
             },
             "auditor_audit_content": {
                 "name": "auditor_audit_content",
-                "type": "TEXT",
+                "type": "BLOB",
                 "default": null,
                 "null": true
             },

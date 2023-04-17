@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 return ['Auditor' => [
     'Action'  => 'Action',
+    'CreatedAt'  => 'Created At',
+    'CreatedBy'  => 'Created By',
     'Audit'   => 'Audit',
     'Auditor' => 'Auditor',
     'Audits'  => 'Audits',
