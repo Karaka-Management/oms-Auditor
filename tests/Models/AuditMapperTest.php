@@ -42,11 +42,11 @@ final class AuditMapperTest extends \PHPUnit\Framework\TestCase
         );
 
         $id = AuditMapper::create()->execute($audit);
-        self::assertGreaterThan(0, $audit->getId());
-        self::assertEquals($id, $audit->getId());
+        self::assertGreaterThan(0, $audit->id);
+        self::assertEquals($id, $audit->id);
 
         $auditR = AuditMapper::get()
-            ->where('id', $audit->getId())
+            ->where('id', $audit->id)
             ->execute();
 
         self::assertEquals($audit->type, $auditR->type);

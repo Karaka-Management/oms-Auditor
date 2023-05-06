@@ -66,9 +66,9 @@ echo $this->getData('nav')->render(); ?>
                 <?php
                 $count = 0;
                 foreach ($audits as $key => $audit) : ++$count;
-                    $url = UriFactory::build('{/base}/admin/audit/single?id=' . $audit->getId()); ?>
+                    $url = UriFactory::build('{/base}/admin/audit/single?id=' . $audit->id); ?>
                     <tr tabindex="0" data-href="<?= $url; ?>">
-                        <td><?= $audit->getId(); ?>
+                        <td><?= $audit->id; ?>
                         <td><?= $this->printHtml($audit->module); ?>
                         <td><?php if ($audit->old === null) : echo $this->getHtml('CREATE'); ?>
                             <?php elseif ($audit->old !== null && $audit->new !== null) : echo $this->getHtml('UPDATE'); ?>
@@ -77,7 +77,7 @@ echo $this->getData('nav')->render(); ?>
                             <?php endif; ?>
                         <td><?= $this->printHtml((string) $audit->type); ?>
                         <td><?= $this->printHtml($audit->trigger); ?>
-                        <td><a class="content" href="<?= UriFactory::build('{/base}/admin/account/settings?id=' . $audit->createdBy->getId()); ?>"><?= $this->printHtml(
+                        <td><a class="content" href="<?= UriFactory::build('{/base}/admin/account/settings?id=' . $audit->createdBy->id); ?>"><?= $this->printHtml(
                                 $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
                             ); ?></a>
                         <td><?= $this->printHtml((string) $audit->ref); ?>

@@ -98,7 +98,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $logs = AuditMapper::getAll()->execute();
 
         foreach($logs as $log) {
-            if ($log->getId() > 0
+            if ($log->id > 0
                 && $log->type === 1
                 && $log->trigger === 'test-trigger'
                 && $log->module === 'Auditor'
@@ -127,7 +127,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
         $found = false;
         foreach($logs as $log) {
-            if ($log->getId() > 0
+            if ($log->id > 0
                 && $log->type === 1
                 && $log->trigger === 'test-trigger'
                 && $log->module === 'Auditor'
@@ -169,7 +169,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $logs = AuditMapper::getAll()->execute();
 
         foreach($logs as $log) {
-            if ($log->getId() > 0
+            if ($log->id > 0
                 && $log->type === 1
                 && $log->trigger === 'test-trigger'
                 && $log->module === 'Auditor'

@@ -32,7 +32,7 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
     public function testDefault() : void
     {
         $audit = new Audit();
-        self::assertEquals(0, $audit->getId());
+        self::assertEquals(0, $audit->id);
         self::assertEquals(0, $audit->type);
         self::assertEquals('', $audit->trigger);
         self::assertNull($audit->module);
@@ -41,7 +41,7 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertNull($audit->old);
         self::assertNull($audit->new);
         self::assertEquals(0, $audit->ip);
-        self::assertEquals(0, $audit->createdBy->getId());
+        self::assertEquals(0, $audit->createdBy->id);
         self::assertInstanceOf('\DateTimeImmutable', $audit->createdAt);
     }
 
@@ -70,6 +70,6 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('old', $audit->old);
         self::assertEquals('new', $audit->new);
         self::assertEquals(\ip2long('127.0.0.1'), $audit->ip);
-        self::assertEquals(0, $audit->createdBy->getId());
+        self::assertEquals(0, $audit->createdBy->id);
     }
 }

@@ -1,0 +1,41 @@
+{
+    "triggers": [
+    ],
+    "actions": {
+        "1006200001": {
+            "name": "Create blockchain",
+            "description": {
+                "en": "Create audit blockchain",
+                "de": "Erstelle Audit Blockchain"
+            },
+            "function_type": "Cli",
+            "function": "cliGenerateBlockchain",
+            "module": "Auditor",
+            "inputs": [
+            ],
+            "outputs": [
+            ],
+            "settings": {
+            }
+        }
+    },
+    "workflows": {
+        "Blockchain audit": [
+            {
+                "id": "1005500005",
+                "settings": {
+                    "interval": "* 2 * * *"
+                },
+                "children": [
+                    {
+                        "id": "1006200001",
+                        "comment": "Create blockchain",
+                        "settings": {},
+                        "children": [
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

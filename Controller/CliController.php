@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\Auditor\Controller;
 
 use Modules\Auditor\Models\AuditMapper;
-use Modules\Auditor\Models\NullAudit;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
@@ -61,15 +60,15 @@ final class CliController extends Controller
             ->limit(1)
             ->execute();
 
-        if ($first->getId() === 1) {
+        if ($first->id === 1) {
             /** @var \Modules\Auditor\Models\Audit $first */
             $first = AuditMapper::get()
-                ->where('id', $first->getId() + 1)
+                ->where('id', $first->id + 1)
                 ->execute();
         }
 
         $count = 0;
-        if (!($first instanceof NullAudit)) {
+        if ($first->id > 0) {
             /** @var \Modules\Auditor\Models\Audit $last */
             $last = AuditMapper::get()
                 ->sort('id', OrderType::DESC)
@@ -78,13 +77,13 @@ final class CliController extends Controller
 
             /** @var \Modules\Auditor\Models\Audit $previous */
             $previous = AuditMapper::get()
-                ->where('id', $first->getId() - 1)
+                ->where('id', $first->id - 1)
                 ->execute();
 
             $current        = $first;
-            $endLastBatchId = $first->getId() - 1;
+            $endLastBatchId = $first->id - 1;
 
-            while ($current->getId() !== 0 && $current->getId() <= $last->getId()) {
+            while ($current->id !== 0 && $current->id <= $last->id) {
                 /** @var \Modules\Auditor\Models\Audit[] $batch */
                 $batch = AuditMapper::getAll()
                     ->where('id', $endLastBatchId, '>')
@@ -97,8 +96,8 @@ final class CliController extends Controller
 
                     $current->blockchain = \md5(
                         $previous->blockchain
-                        . $current->getId()
-                        . $current->createdBy->getId()
+                        . $current->id
+                        . $current->createdBy->id
                         . $current->createdAt->format('Y-m-d H:i:s')
                         . $current->type
                         . $current->trigger
@@ -115,7 +114,7 @@ final class CliController extends Controller
                     $previous = $current;
                 }
 
-                $endLastBatchId = $current->getId();
+                $endLastBatchId = $current->id;
             }
 
         }

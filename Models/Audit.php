@@ -24,6 +24,8 @@ use phpOMS\Account\Account;
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
+ *
+ * @todo: Add application id
  */
 class Audit
 {
@@ -33,7 +35,7 @@ class Audit
      * @var int
      * @since 1.0.0
      */
-    protected int $id = 0;
+    public int $id = 0;
 
     /**
      * Audit type.

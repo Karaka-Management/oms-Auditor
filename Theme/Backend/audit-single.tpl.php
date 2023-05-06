@@ -53,7 +53,7 @@ echo $this->getData('nav')->render();
                         <td><?= $audit->type; ?>
                     <tr>
                         <th><?= $this->getHtml('By'); ?>
-                        <td><a href="<?= UriFactory::build('{/base}/admin/account/settings?{?}&id=' . $audit->createdBy->getId()); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
+                        <td><a href="<?= UriFactory::build('{/base}/admin/account/settings?{?}&id=' . $audit->createdBy->id); ?>"><?= $audit->createdBy->name1; ?> <?= $audit->createdBy->name2; ?></a>
                     <tr>
                         <th><?= $this->getHtml('Ref'); ?>
                         <td><?= $this->printHtml((string) $audit->ref); ?>
