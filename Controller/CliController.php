@@ -68,7 +68,7 @@ final class CliController extends Controller
         }
 
         $count = 0;
-        if ($first->id > 0) {
+        if ($first->id > 0 && $first->blockchain === null) {
             /** @var \Modules\Auditor\Models\Audit $last */
             $last = AuditMapper::get()
                 ->sort('id', OrderType::DESC)
@@ -83,7 +83,7 @@ final class CliController extends Controller
             $current        = $first;
             $endLastBatchId = $first->id - 1;
 
-            while ($current->id !== 0 && $current->id <= $last->id) {
+            while ($current->id !== 0 && $current->id < $last->id) {
                 /** @var \Modules\Auditor\Models\Audit[] $batch */
                 $batch = AuditMapper::getAll()
                     ->where('id', $endLastBatchId, '>')
