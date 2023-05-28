@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\Auditor\Admin\Install;
 
-use Model\Setting;
-use Model\SettingMapper;
 use Modules\Auditor\Models\SettingsEnum;
 use phpOMS\Application\ApplicationAbstract;
 
@@ -48,13 +46,13 @@ class Media
             [
                 'data' => [
                     [
-                        'type' => 'setting',
-                        'name' => SettingsEnum::REPORT_PDF,
+                        'type'    => 'setting',
+                        'name'    => SettingsEnum::REPORT_PDF,
                         'content' => (string) $media['upload'][0]['id'],
                         'pattern' => '\\d+',
-                        'module' => 'Auditor'
-                    ]
-                ]
+                        'module'  => 'Auditor',
+                    ],
+                ],
             ]
         );
     }

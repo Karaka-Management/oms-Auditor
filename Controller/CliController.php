@@ -116,7 +116,6 @@ final class CliController extends Controller
 
                 $endLastBatchId = $current->id;
             }
-
         }
 
         $view->setData('count', $count);
