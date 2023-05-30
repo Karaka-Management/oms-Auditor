@@ -18,9 +18,9 @@ use phpOMS\Uri\UriFactory;
  * @var \Web\Backend\Views\TableView  $this
  * @var \Modules\Audit\Models\Audit[] $audits
  */
-$audits = $this->getData('audits') ?? [];
+$audits = $this->data['audits'] ?? [];
 
-$tableView            = $this->getData('tableView');
+$tableView            = $this->data['tableView'];
 $tableView->id        = 'auditList';
 $tableView->baseUri   = '{/base}/admin/audit/list';
 $tableView->exportUri = '{/api}auditor/list/export';
@@ -37,7 +37,7 @@ $next = $tableView->getNextLink(
     $this->getData('hasNext') ?? false
 );
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12">

@@ -51,7 +51,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-list');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response);
 
         $searchFieldData = $request->getLike('.*\-p\-.*');
         $searchField     = [];
@@ -84,7 +84,7 @@ final class BackendController extends Controller
         }
 
         $pageLimit = 25;
-        $view->addData('pageLimit', $pageLimit);
+        $view->data['pageLimit'] = $pageLimit;
 
         $mapper = AuditMapper::getAll()->with('createdBy');
 
@@ -102,7 +102,7 @@ final class BackendController extends Controller
             filters: $filterField
         );
 
-        $view->setData('audits', $list['data']);
+        $view->data['audits'] = $list['data'];
 
         /** @var \Model\Setting[] $exportTemplates */
         $exportTemplates = $this->app->appSettings->get(
@@ -132,7 +132,7 @@ final class BackendController extends Controller
         $tableView->setData('hasPrevious', $list['hasPrevious']);
         $tableView->setData('hasNext', $list['hasNext']);
 
-        $view->addData('tableView', $tableView);
+        $view->data['tableView'] = $tableView;
 
         return $view;
     }
@@ -153,7 +153,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-single');
-        $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response));
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response);
 
         /** @var \Modules\Auditor\Models\Audit $audit */
         $audit = AuditMapper::get()
@@ -161,7 +161,7 @@ final class BackendController extends Controller
             ->where('id', (int) $request->getData('id'))
             ->execute();
 
-        $view->setData('audit', $audit);
+        $view->data['audit'] = $audit;
 
         return $view;
     }

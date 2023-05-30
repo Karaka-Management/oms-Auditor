@@ -118,7 +118,7 @@ final class CliController extends Controller
             }
         }
 
-        $view->setData('count', $count);
+        $view->data['count'] = $count;
 
         return $view;
     }

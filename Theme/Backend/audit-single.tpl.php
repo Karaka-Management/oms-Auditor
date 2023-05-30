@@ -19,11 +19,11 @@ use phpOMS\Views\ViewAbstract;
 /** @var \phpOMS\Views\View $this */
 
 /** @var \Modules\Auditor\Models\Audit $audit */
-$audit   = $this->getData('audit');
+$audit   = $this->data['audit'];
 $headers = HttpHeader::getAllHeaders();
 
 /** @var \phpOMS\Views\View $this */
-echo $this->getData('nav')->render();
+echo $this->data['nav']->render();
 ?>
 
 <?php if (isset($headers['Referer'])) : ?>
