@@ -60,7 +60,7 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
-        $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
+        $newString = ''; //StringUtils::stringify($new, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
             new NullAccount($account),
             null,
