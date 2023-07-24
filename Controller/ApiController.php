@@ -26,6 +26,14 @@ use phpOMS\Utils\StringUtils;
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
+ *
+ * @note:
+ *      The logging functions sometimes have unused parameters.
+ *      They could be removed if the event triggers in the ModuleAbstract
+ *      and some manual function calls get adjusted.
+ *      The reason why this is not done at the moment is that this way
+ *      the logging functions/event triggers have the same structure
+ *      and therefore are slightly easier/brain off to use.
  */
 final class ApiController extends Controller
 {
@@ -33,8 +41,8 @@ final class ApiController extends Controller
      * Log model creation
      *
      * @param int    $account Account who created the model
-     * @param mixed  $old     Old value (always null)
-     * @param mixed  $new     New value
+     * @param mixed  $old     Old value (unused, should be null)
+     * @param mixed  $new     New value (unused, should be null)
      * @param int    $type    Module model type
      * @param string $trigger What triggered this log?
      * @param string $module  Module name
@@ -60,6 +68,7 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        // Using empty string as the data is represented by the current model
         $newString = ''; //StringUtils::stringify($new, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
             new NullAccount($account),
@@ -134,7 +143,7 @@ final class ApiController extends Controller
      *
      * @param int    $account Account who created the model
      * @param mixed  $old     Old value
-     * @param mixed  $new     New value (always null)
+     * @param mixed  $new     New value (unused, should be null)
      * @param int    $type    Module model type
      * @param string $trigger What triggered this log?
      * @param string $module  Module name
