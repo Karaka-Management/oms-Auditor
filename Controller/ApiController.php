@@ -184,4 +184,99 @@ final class ApiController extends Controller
 
         AuditMapper::create()->execute($audit);
     }
+
+    /**
+     * Log relation creation
+     *
+     * @param int    $account Account who created the model
+     * @param mixed  $old     Old value (unused, should be null)
+     * @param mixed  $new     New value (unused, should be null)
+     * @param int    $type    Module model type
+     * @param string $trigger What triggered this log?
+     * @param string $module  Module name
+     * @param string $ref     Reference to other model
+     * @param string $content Message
+     * @param string $ip      Ip
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function eventLogRelationCreate(
+        int $account,
+        mixed $old,
+        mixed $new,
+        int $type = 0,
+        string $trigger = '',
+        string $module = null,
+        string $ref = null,
+        string $content = null,
+        string $ip = null
+    ) : void
+    {
+        // Using empty string as the data is represented by the current model
+        $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
+        $audit     = new Audit(
+            new NullAccount($account),
+            null,
+            $newString,
+            $type,
+            $trigger,
+            $module,
+            $ref,
+            $content,
+            (int) \ip2long($ip ?? '127.0.0.1')
+        );
+
+        AuditMapper::create()->execute($audit);
+    }
+
+    /**
+     * Log relation delete
+     *
+     * @param int    $account Account who created the model
+     * @param mixed  $old     Old value
+     * @param mixed  $new     New value (unused, should be null)
+     * @param int    $type    Module model type
+     * @param string $trigger What triggered this log?
+     * @param string $module  Module name
+     * @param string $ref     Reference to other model
+     * @param string $content Message
+     * @param string $ip      Ip
+     *
+     * @return void
+     *
+     * @api
+     *
+     * @since 1.0.0
+     */
+    public function eventLogRelationDelete(
+        int $account,
+        mixed $old,
+        mixed $new,
+        int $type = 0,
+        string $trigger = '',
+        string $module = null,
+        string $ref = null,
+        string $content = null,
+        string $ip = null
+    ) : void
+    {
+        $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
+        $audit     = new Audit(
+            new NullAccount($account),
+            $oldString,
+            null,
+            $type,
+            $trigger,
+            $module,
+            $ref,
+            $content,
+            (int) \ip2long($ip ?? '127.0.0.1')
+        );
+
+        AuditMapper::create()->execute($audit);
+    }
 }
