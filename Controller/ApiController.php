@@ -68,6 +68,10 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        if (!$this->active) {
+            return;
+        }
+
         // Using empty string as the data is represented by the current model
         $newString = ''; //StringUtils::stringify($new, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
@@ -116,6 +120,10 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        if (!$this->active) {
+            return;
+        }
+
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
 
@@ -169,6 +177,10 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        if (!$this->active) {
+            return;
+        }
+
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
             new NullAccount($account),
@@ -216,6 +228,10 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        if (!$this->active) {
+            return;
+        }
+
         // Using empty string as the data is represented by the current model
         $newString = StringUtils::stringify($new, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
@@ -264,6 +280,10 @@ final class ApiController extends Controller
         string $ip = null
     ) : void
     {
+        if (!$this->active) {
+            return;
+        }
+
         $oldString = StringUtils::stringify($old, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
             new NullAccount($account),
