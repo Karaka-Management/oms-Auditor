@@ -15,7 +15,7 @@ declare(strict_types=1);
 use phpOMS\Uri\UriFactory;
 
 /**
- * @var \Web\Backend\Views\TableView  $this
+ * @var \phpOMS\Views\View $this
  * @var \Modules\Audit\Models\Audit[] $audits
  */
 $audits = $this->data['audits'] ?? [];
@@ -28,12 +28,12 @@ $tableView->setObjects($audits);
 
 $previous = $tableView->getPreviousLink(
     $this->request,
-    empty($this->objects) || !$this->getData('hasPrevious') ? null : \reset($this->objects)
+    empty($tableView->objects) || !$this->getData('hasPrevious') ? null : \reset($tableView->objects)
 );
 
 $next = $tableView->getNextLink(
     $this->request,
-    empty($this->objects) ? null : \end($this->objects),
+    empty($tableView->objects) ? null : \end($tableView->objects),
     $this->getData('hasNext') ?? false
 );
 
