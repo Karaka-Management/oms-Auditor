@@ -98,6 +98,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $logs = AuditMapper::getAll()->execute();
 
         foreach($logs as $log) {
+            var_dump($log);
             if ($log->id > 0
                 && $log->type === 1
                 && $log->trigger === 'test-trigger'
