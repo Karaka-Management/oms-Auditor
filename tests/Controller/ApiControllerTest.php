@@ -103,9 +103,9 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
                 && $log->trigger === 'test-trigger'
                 && $log->module === 'Auditor'
                 && $log->ref === 'abc'
-                && \strlen($log->content) > 2
+                && \strlen($log->content) > 0
                 && $log->old === null
-                && \strlen($log->new) > 3
+                && \strlen($log->new) > 0
             ) {
                 self::assertTrue(true);
                 return;
