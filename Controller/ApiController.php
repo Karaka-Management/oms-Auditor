@@ -73,7 +73,7 @@ final class ApiController extends Controller
         }
 
         // Using empty string as the data is represented by the current model
-        $newString = ''; //StringUtils::stringify($new, \JSON_PRETTY_PRINT);
+        $newString = null; //StringUtils::stringify($new, \JSON_PRETTY_PRINT);
         $audit     = new Audit(
             new NullAccount($account),
             null,

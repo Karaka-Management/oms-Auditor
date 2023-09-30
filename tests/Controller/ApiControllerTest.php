@@ -95,7 +95,10 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testLogCreate() : void
     {
         $this->module->eventLogCreate(1, null, ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
-        $logs = AuditMapper::getAll()->execute();
+        $logs = AuditMapper::getAll()
+            ->sort('id', 'DESC')
+            ->limit(100)
+            ->execute();
 
         foreach($logs as $log) {
             if ($log->id > 0
@@ -105,7 +108,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
                 && $log->ref === 'abc'
                 && \strlen($log->content) > 0
                 && $log->old === null
-                && \strlen($log->new) > 0
+                && $log->new === null // null because the object itself is the data, no additional logging required
             ) {
                 self::assertTrue(true);
                 return;
