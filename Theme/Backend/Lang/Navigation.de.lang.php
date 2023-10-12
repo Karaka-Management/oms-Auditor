@@ -18,6 +18,6 @@ return ['Navigation' => [
     'Auditor'  => 'Abschlussprüfer',
     'Audits'   => 'Audits',
     'Create'   => 'Erstellen',
-    'List'     => 'Aufführen',
+    'List'     => 'Liste',
     'Modules'  => 'Module',
 ]];
