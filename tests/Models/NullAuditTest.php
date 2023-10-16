@@ -39,4 +39,14 @@ final class NullAuditTest extends \PHPUnit\Framework\TestCase
         $null = new NullAudit(2);
         self::assertEquals(2, $null->id);
     }
+
+    /**
+     * @covers Modules\Auditor\Models\NullAudit
+     * @group module
+     */
+    public function testJsonSerialize() : void
+    {
+        $null = new NullAudit(2);
+        self::assertEquals(['id' => 2], $null);
+    }
 }
