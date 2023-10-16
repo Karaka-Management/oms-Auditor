@@ -32,7 +32,7 @@ final class NullAuditTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @covers Modules\Auditor\Models\NullAudit
-     * @group framework
+     * @group module
      */
     public function testId() : void
     {
