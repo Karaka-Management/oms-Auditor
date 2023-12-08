@@ -27,7 +27,7 @@ use phpOMS\Utils\StringUtils;
  * @link    https://jingga.app
  * @since   1.0.0
  *
- * @note:
+ * @note
  *      The logging functions sometimes have unused parameters.
  *      They could be removed if the event triggers in the ModuleAbstract
  *      and some manual function calls get adjusted.
