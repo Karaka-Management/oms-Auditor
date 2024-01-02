@@ -4,7 +4,7 @@
         "fields": {
             "auditor_audit_id": {
                 "name": "auditor_audit_id",
-                "type": "INT",
+                "type": "BIGINT",
                 "null": false,
                 "primary": true,
                 "autoincrement": true
