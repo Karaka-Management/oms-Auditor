@@ -30,6 +30,7 @@ return ['Auditor' => [
     'Name'      => 'Name',
     'New'       => 'New',
     'Old'       => 'Old',
+    'Logs'      => 'Logs',
     'Ref'       => 'Ref',
     'Subtype'   => 'Subtype',
     'Trigger'   => 'Trigger',

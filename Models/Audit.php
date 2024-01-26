@@ -143,14 +143,14 @@ class Audit
      * @since 1.0.0
      */
     public function __construct(
-        Account $account = null,
-        string $old = null,
-        string $new = null,
+        ?Account $account = null,
+        ?string $old = null,
+        ?string $new = null,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
         int $ip = 0
     ) {
         $this->createdAt = new \DateTimeImmutable('now');
@@ -163,17 +163,5 @@ class Audit
         $this->ref       = $ref;
         $this->content   = $content;
         $this->ip        = $ip;
-    }
-
-    /**
-     * Get id.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getId() : int
-    {
-        return $this->id;
     }
 }

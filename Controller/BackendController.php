@@ -58,7 +58,7 @@ final class BackendController extends Controller
         foreach ($searchFieldData as $key => $data) {
             if ($data === '1') {
                 $split  = \explode('-', $key);
-                $member =  \end($split);
+                $member = \end($split);
 
                 $searchField[] = $member;
             }
@@ -149,10 +149,10 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewAuditorSingle(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    public function viewAuditorView(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-single');
+        $view->setTemplate('/Modules/Auditor/Theme/Backend/audit-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1006201001, $request, $response);
 
         /** @var \Modules\Auditor\Models\Audit $audit */

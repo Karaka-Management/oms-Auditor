@@ -62,10 +62,10 @@ final class ApiController extends Controller
         mixed $new,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
-        string $ip = null
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
+        ?string $ip = null
     ) : void
     {
         if (!$this->active) {
@@ -114,10 +114,10 @@ final class ApiController extends Controller
         mixed $new,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
-        string $ip = null
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
+        ?string $ip = null
     ) : void
     {
         if (!$this->active) {
@@ -171,10 +171,10 @@ final class ApiController extends Controller
         mixed $new,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
-        string $ip = null
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
+        ?string $ip = null
     ) : void
     {
         if (!$this->active) {
@@ -222,10 +222,10 @@ final class ApiController extends Controller
         mixed $new,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
-        string $ip = null
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
+        ?string $ip = null
     ) : void
     {
         if (!$this->active) {
@@ -274,10 +274,10 @@ final class ApiController extends Controller
         mixed $new,
         int $type = 0,
         string $trigger = '',
-        string $module = null,
-        string $ref = null,
-        string $content = null,
-        string $ip = null
+        ?string $module = null,
+        ?string $ref = null,
+        ?string $content = null,
+        ?string $ip = null
     ) : void
     {
         if (!$this->active) {

@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/admin/audit/list.*$' => [
+    '^.*/admin/audit/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\Auditor\Controller\BackendController:viewAuditorList',
             'verb'       => RouteVerb::GET,
@@ -29,9 +29,9 @@ return [
             ],
         ],
     ],
-    '^.*/admin/audit/single.*$' => [
+    '^.*/admin/audit/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\Auditor\Controller\BackendController:viewAuditorSingle',
+            'dest'       => '\Modules\Auditor\Controller\BackendController:viewAuditorView',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::NAME,
