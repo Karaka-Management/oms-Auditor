@@ -27,13 +27,15 @@ use phpOMS\Utils\StringUtils;
  * @link    https://jingga.app
  * @since   1.0.0
  *
- * @note
- *      The logging functions sometimes have unused parameters.
+ * @question The logging functions sometimes have unused parameters.
  *      They could be removed if the event triggers in the ModuleAbstract
  *      and some manual function calls get adjusted.
  *      The reason why this is not done at the moment is that this way
  *      the logging functions/event triggers have the same structure
  *      and therefore are slightly easier/brain off to use.
+ *
+ * @todo Create printable reports based on specific changes
+ *      https://github.com/Karaka-Management/oms-Auditor/issues/3
  */
 final class ApiController extends Controller
 {
