@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\Auditor\Controller;
 
-use Modules\Admin\Models\SettingsEnum;
 use Modules\Auditor\Models\AuditMapper;
-use Modules\Media\Models\MediaMapper;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
