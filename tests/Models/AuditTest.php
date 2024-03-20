@@ -26,7 +26,7 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @testdox The model has the expected default values after initialization
-     * @covers Modules\Auditor\Models\Audit
+     * @covers \Modules\Auditor\Models\Audit
      * @group module
      */
     public function testDefault() : void
@@ -47,7 +47,7 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox The model can be initialized correctly
-     * @covers Modules\Auditor\Models\Audit
+     * @covers \Modules\Auditor\Models\Audit
      * @group module
      */
     public function testConstructorInputOutput() : void

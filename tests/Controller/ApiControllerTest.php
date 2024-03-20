@@ -89,7 +89,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Audit logs for create statements can be created
-     * @covers Modules\Auditor\Controller\ApiController
+     * @covers \Modules\Auditor\Controller\ApiController
      * @group module
      */
     public function testLogCreate() : void
@@ -120,7 +120,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Audit logs for update statements can be created
-     * @covers Modules\Auditor\Controller\ApiController
+     * @covers \Modules\Auditor\Controller\ApiController
      * @group module
      */
     public function testLogUpdate() : void
@@ -148,7 +148,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Auditor\Controller\ApiController
+     * @covers \Modules\Auditor\Controller\ApiController
      * @group module
      */
     public function testLogUpdateWithoutChange() : void
@@ -163,7 +163,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @testdox Audit logs for delete statements can be created
-     * @covers Modules\Auditor\Controller\ApiController
+     * @covers \Modules\Auditor\Controller\ApiController
      * @group module
      */
     public function testLogDelete() : void

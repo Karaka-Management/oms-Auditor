@@ -22,7 +22,7 @@ use Modules\Auditor\Models\NullAudit;
 final class NullAuditTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Auditor\Models\NullAudit
+     * @covers \Modules\Auditor\Models\NullAudit
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullAuditTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Auditor\Models\NullAudit
+     * @covers \Modules\Auditor\Models\NullAudit
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullAuditTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\Auditor\Models\NullAudit
+     * @covers \Modules\Auditor\Models\NullAudit
      * @group module
      */
     public function testJsonSerialize() : void

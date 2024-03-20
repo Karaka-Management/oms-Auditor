@@ -24,7 +24,7 @@ use Modules\Auditor\Models\AuditMapper;
 final class AuditMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\Auditor\Models\AuditMapper
+     * @covers \Modules\Auditor\Models\AuditMapper
      * @group module
      */
     public function testCR() : void
