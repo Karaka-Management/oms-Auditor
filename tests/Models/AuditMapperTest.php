@@ -21,12 +21,10 @@ use Modules\Auditor\Models\AuditMapper;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Auditor\Models\AuditMapper::class)]
 final class AuditMapperTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Auditor\Models\AuditMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testCR() : void
     {
         $audit = new Audit(

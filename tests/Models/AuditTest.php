@@ -18,17 +18,14 @@ use Modules\Auditor\Models\Audit;
 use phpOMS\Account\Account;
 
 /**
- * @testdox Modules\tests\Auditor\Models\AuditTest: Audit model
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Auditor\Models\Audit::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Auditor\Models\AuditTest: Audit model')]
 final class AuditTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @testdox The model has the expected default values after initialization
-     * @covers \Modules\Auditor\Models\Audit
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model has the expected default values after initialization')]
     public function testDefault() : void
     {
         $audit = new Audit();
@@ -45,11 +42,8 @@ final class AuditTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('\DateTimeImmutable', $audit->createdAt);
     }
 
-    /**
-     * @testdox The model can be initialized correctly
-     * @covers \Modules\Auditor\Models\Audit
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('The model can be initialized correctly')]
     public function testConstructorInputOutput() : void
     {
         $audit = new Audit(

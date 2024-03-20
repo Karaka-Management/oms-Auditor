@@ -19,31 +19,23 @@ use Modules\Auditor\Models\NullAudit;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Auditor\Models\NullAudit::class)]
 final class NullAuditTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\Auditor\Models\NullAudit
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\Auditor\Models\Audit', new NullAudit());
     }
 
-    /**
-     * @covers \Modules\Auditor\Models\NullAudit
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullAudit(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\Auditor\Models\NullAudit
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullAudit(2);

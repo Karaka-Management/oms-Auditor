@@ -30,10 +30,10 @@ use phpOMS\Router\WebRouter;
 use phpOMS\Utils\TestUtils;
 
 /**
- * @testdox Modules\tests\Auditor\Controller\ApiControllerTest: Auditor api controller
- *
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\Auditor\Controller\ApiController::class)]
+#[\PHPUnit\Framework\Attributes\TestDox('Modules\tests\Auditor\Controller\ApiControllerTest: Auditor api controller')]
 final class ApiControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected ApplicationAbstract $app;
@@ -87,11 +87,8 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         TestUtils::setMember($this->module, 'app', $this->app);
     }
 
-    /**
-     * @testdox Audit logs for create statements can be created
-     * @covers \Modules\Auditor\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Audit logs for create statements can be created')]
     public function testLogCreate() : void
     {
         $this->module->eventLogCreate(1, null, ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
@@ -118,11 +115,8 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(false);
     }
 
-    /**
-     * @testdox Audit logs for update statements can be created
-     * @covers \Modules\Auditor\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Audit logs for update statements can be created')]
     public function testLogUpdate() : void
     {
         $this->module->eventLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
@@ -147,10 +141,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertTrue($found);
     }
 
-    /**
-     * @covers \Modules\Auditor\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testLogUpdateWithoutChange() : void
     {
         $logs = AuditMapper::getAll()->execute();
@@ -161,11 +152,8 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(\count($logs), \count($logs2));
     }
 
-    /**
-     * @testdox Audit logs for delete statements can be created
-     * @covers \Modules\Auditor\Controller\ApiController
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
+    #[\PHPUnit\Framework\Attributes\TestDox('Audit logs for delete statements can be created')]
     public function testLogDelete() : void
     {
         $this->module->eventLogDelete(1, ['id' => 1, 'test' => true], null, 1, 'test-trigger', 'Auditor', 'abc', 'def');
