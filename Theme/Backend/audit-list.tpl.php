@@ -23,7 +23,7 @@ $audits = $this->data['audits'] ?? [];
 $tableView            = $this->data['tableView'];
 $tableView->id        = 'auditList';
 $tableView->baseUri   = '{/base}/admin/audit/list';
-$tableView->exportUri = '{/api}auditor/list/export';
+$tableView->exportUri = '{/api}auditor/list/export?csrf={$CSRF}';
 $tableView->setObjects($audits);
 
 $previous = $tableView->getPreviousLink(
