@@ -95,7 +95,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
         $logs = AuditMapper::getAll()
             ->sort('id', 'DESC')
             ->limit(100)
-            ->execute();
+            ->executeGetArray();
 
         foreach($logs as $log) {
             if ($log->id > 0
@@ -120,7 +120,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testLogUpdate() : void
     {
         $this->module->eventLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 1, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
-        $logs = AuditMapper::getAll()->execute();
+        $logs = AuditMapper::getAll()->executeGetArray();
 
         $found = false;
         foreach($logs as $log) {
@@ -144,9 +144,9 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testLogUpdateWithoutChange() : void
     {
-        $logs = AuditMapper::getAll()->execute();
+        $logs = AuditMapper::getAll()->executeGetArray();
         $this->module->eventLogUpdate(1, ['id' => 2, 'test' => true], ['id' => 2, 'test' => true], 1, 'test-trigger', 'Auditor', 'abc', 'def');
-        $logs2 = AuditMapper::getAll()->execute();
+        $logs2 = AuditMapper::getAll()->executeGetArray();
 
         self::assertGreaterThan(0, \count($logs));
         self::assertEquals(\count($logs), \count($logs2));
@@ -157,7 +157,7 @@ final class ApiControllerTest extends \PHPUnit\Framework\TestCase
     public function testLogDelete() : void
     {
         $this->module->eventLogDelete(1, ['id' => 1, 'test' => true], null, 1, 'test-trigger', 'Auditor', 'abc', 'def');
-        $logs = AuditMapper::getAll()->execute();
+        $logs = AuditMapper::getAll()->executeGetArray();
 
         foreach($logs as $log) {
             if ($log->id > 0

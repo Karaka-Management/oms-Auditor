@@ -89,7 +89,7 @@ final class CliController extends Controller
                     ->where('id', $endLastBatchId, '>')
                     ->sort('id', OrderType::ASC)
                     ->limit(50)
-                    ->execute();
+                    ->executeGetArray();
 
                 foreach ($batch as $audit) {
                     $current = $audit;
