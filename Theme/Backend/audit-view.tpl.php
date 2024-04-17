@@ -38,7 +38,7 @@ echo $this->data['nav']->render();
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="portlet">
+        <section class="portlet">
             <div class="portlet-body">
                 <table class="list">
                     <tr>
@@ -85,6 +85,6 @@ echo $this->data['nav']->render();
                     </pre>
                 </article>
             </div>
-        </div>
+        </section>
     </div>
 </div>

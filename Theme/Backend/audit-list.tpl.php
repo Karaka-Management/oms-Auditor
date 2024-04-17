@@ -41,7 +41,7 @@ echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="portlet">
+        <section class="portlet">
             <div class="portlet-head"><?= $tableView->renderTitle($this->getHtml('Audits')); ?></div>
             <div class="slider">
             <table id="<?= $tableView->id; ?>" class="default sticky">
@@ -98,6 +98,6 @@ echo $this->data['nav']->render(); ?>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-        </div>
+        </section>
     </div>
 </div>
