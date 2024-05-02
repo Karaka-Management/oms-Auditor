@@ -77,7 +77,7 @@ echo $this->data['nav']->render(); ?>
                             <?php endif; ?>
                         <td><?= $this->printHtml((string) $audit->type); ?>
                         <td><?= $this->printHtml($audit->trigger); ?>
-                        <td><a class="content" href="<?= UriFactory::build('{/base}/admin/account/settings?id=' . $audit->createdBy->id); ?>"><?= $this->printHtml(
+                        <td><a class="content" href="<?= UriFactory::build('{/base}/admin/account/view?id=' . $audit->createdBy->id); ?>"><?= $this->printHtml(
                                 $this->renderUserName('%3$s %2$s %1$s', [$audit->createdBy->name1, $audit->createdBy->name2, $audit->createdBy->name3, $audit->createdBy->login])
                             ); ?></a>
                         <td><?= $this->printHtml((string) $audit->ref); ?>
