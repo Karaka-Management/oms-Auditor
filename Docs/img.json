@@ -1,0 +1,7 @@
+[
+    [
+        "/admin/audit/view?id=1",
+        "//*[@id=\"content\"]/div[2]/div/section",
+        "/Auditor/Docs/Help/img/audit.png"
+    ]
+]
