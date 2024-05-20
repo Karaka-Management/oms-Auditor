@@ -6,7 +6,7 @@
  *
  * @package   Modules\Auditor
  * @copyright Dennis Eichhorn
- * @license   OMS License 2.0
+ * @license   OMS License 2.2
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -26,7 +26,7 @@ use Web\Backend\Views\TableView;
  * Calendar controller class.
  *
  * @package Modules\Auditor
- * @license OMS License 2.0
+ * @license OMS License 2.2
  * @link    https://jingga.app
  * @since   1.0.0
  * @codeCoverageIgnore
