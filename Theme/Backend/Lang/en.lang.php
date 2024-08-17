@@ -15,6 +15,7 @@ declare(strict_types=1);
 return ['Auditor' => [
     'Action'    => 'Action',
     'Audits'    => 'Audits',
+    'Content'    => 'Content',
     'By'        => 'By',
     'CREATE'    => 'Create',
     'DELETE'    => 'Delete',
