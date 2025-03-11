@@ -21,6 +21,7 @@ return ['Auditor' => [
     'DELETE'    => 'Löschen',
     'Date'      => 'Datum',
     'IP'        => 'IP',
+    'Logs'      => 'Logs',
     'Module'    => 'Modul',
     'Ref'       => 'REF.',
     'Trigger'   => 'Abzug',
